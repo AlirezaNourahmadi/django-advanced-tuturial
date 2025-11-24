@@ -24,6 +24,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("blog/", include("blog.urls")),
     path("accounts/",include("django.contrib.auth.urls")),
+    
+    #rest_framework authentication url
+    path("api-auth/",include("rest_framework.urls"))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

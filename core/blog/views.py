@@ -4,9 +4,15 @@ from django.views.generic.base import RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from .forms import ContactForm, PostForm
 from .models import Post
+
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 # Create your views here.
 
 # function based view to show index page
@@ -46,7 +52,7 @@ class RedirectToMaktabView(RedirectView):
     url = "https://www.maktabkhooneh.com/"
 
 
-class PostListView(LoginRequiredMixin,ListView):
+class PostListView(LoginRequiredMixin, ListView):
     model = Post
     # queryset = Post.objects.all()
     ordering = "id"
@@ -58,7 +64,7 @@ class PostListView(LoginRequiredMixin,ListView):
     #     return posts
 
 
-class PostDetailView(LoginRequiredMixin,DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
 
@@ -81,7 +87,7 @@ class PostCreateView(FormView):
 """
 
 
-class PostCreateView(LoginRequiredMixin,CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     # fields = "__all__"
     form_class = PostForm
@@ -91,11 +97,22 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin,UpdateView):
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     success_url = "/blog/post/"
-    
-class PostDeleteView(LoginRequiredMixin,DeleteView):
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = "/blog/post/"
+
+
+class APIPostListView():
+    pass
+
+
+@api_view()
+def api_post_list_view(request):
+    return Response("ok")

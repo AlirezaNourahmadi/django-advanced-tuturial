@@ -6,10 +6,14 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, ListCreateAPIView, CreateAPIView, GenericAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ViewSet,ModelViewSet
 from rest_framework.decorators import action
-
+from rest_framework.filters import SearchFilter,OrderingFilter
 from django.shortcuts import get_object_or_404
 from .serializers import PostSerializer, CategorySerializer
 from blog.models import Post, Category
+from .permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+from .paginations import LargeResultsSetPagination
+
 
 """
 @api_view(["GET", "POST"])
@@ -105,13 +109,14 @@ class PostDetail(RetrieveUpdateDestroyAPIView):
 """
 
 class PostModelViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    
-    @action(detail=False,methods=["get"])
-    def get_ok(self,request):
-        return Response({"detail":"ok"})
+    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
+    filterset_fields = ["category", "author", "status"]
+    search_fields = ["title","content"]
+    ordering_fields = ["published_date"]
+    pagination_class = LargeResultsSetPagination
 
 class CategoryModelViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]

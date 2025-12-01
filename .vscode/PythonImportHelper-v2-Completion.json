@@ -43,7 +43,7 @@
         "documentation": {}
     },
     {
-        "label": "generics",
+        "label": "status",
         "importPath": "rest_framework",
         "description": "rest_framework",
         "isExtraImport": true,
@@ -51,7 +51,7 @@
         "documentation": {}
     },
     {
-        "label": "status",
+        "label": "generics",
         "importPath": "rest_framework",
         "description": "rest_framework",
         "isExtraImport": true,
@@ -123,6 +123,14 @@
         "documentation": {}
     },
     {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
         "label": "gettext_lazy",
         "importPath": "django.utils.translation",
         "description": "django.utils.translation",
@@ -136,6 +144,14 @@
         "description": "django.utils.translation",
         "isExtraImport": true,
         "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairSerializer",
+        "importPath": "rest_framework_simplejwt.serializers",
+        "description": "rest_framework_simplejwt.serializers",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.serializers",
         "documentation": {}
     },
     {
@@ -276,6 +292,14 @@
     },
     {
         "label": "TokenVerifyView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairView",
         "importPath": "rest_framework_simplejwt.views",
         "description": "rest_framework_simplejwt.views",
         "isExtraImport": true,
@@ -1071,11 +1095,29 @@
         "documentation": {}
     },
     {
+        "label": "CustomTokenObtainPairSerializer",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.serializers",
+        "description": "core.accounts.api.v1.serializers",
+        "peekOfCode": "class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):\n    def validate(self, attrs):\n        validated_data = super().validate(attrs)\n        validated_data[\"email\"] = self.user.email\n        validated_data[\"user_id\"] = self.user.id\n        return validated_data\nclass ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)",
+        "detail": "core.accounts.api.v1.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ChangePasswordSerializer",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.serializers",
+        "description": "core.accounts.api.v1.serializers",
+        "peekOfCode": "class ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)\n    def validate(self, attrs):\n        if attrs.get('new_password') != attrs.get(\"new_password1\"):\n            raise serializers.ValidationError(\n                {\"datails\": \"passwords does not match\"})\n        try:\n            validate_password(attrs.get(\"new_password\"))",
+        "detail": "core.accounts.api.v1.serializers",
+        "documentation": {}
+    },
+    {
         "label": "app_name",
         "kind": 5,
         "importPath": "core.accounts.api.v1.urls",
         "description": "core.accounts.api.v1.urls",
-        "peekOfCode": "app_name = \"api-v1\"\nurlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\",views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),\n    # login jwt",
+        "peekOfCode": "app_name = \"api-v1\"\nurlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    path(\"change-password/\",views.ChangePasswordView.as_view(),name=\"change-password\"),\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\",views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),",
         "detail": "core.accounts.api.v1.urls",
         "documentation": {}
     },
@@ -1084,7 +1126,7 @@
         "kind": 5,
         "importPath": "core.accounts.api.v1.urls",
         "description": "core.accounts.api.v1.urls",
-        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\",views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),\n    # login jwt\n    path(\"jwt/create/\",TokenObtainPairView.as_view(), name=\"jwt-create\"),",
+        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    path(\"change-password/\",views.ChangePasswordView.as_view(),name=\"change-password\"),\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\",views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),\n    # login jwt",
         "detail": "core.accounts.api.v1.urls",
         "documentation": {}
     },
@@ -1112,6 +1154,33 @@
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
         "peekOfCode": "class CustomDiscardAuthToken(APIView):\n    permission_classes = [IsAuthenticated]\n    def post(self, request):\n        deleted_count, _ = Token.objects.filter(user=request.user).delete()\n        if deleted_count == 0:\n            return Response(\n                {\"detail\": \"Active token not found for this user.\"},\n                status=status.HTTP_400_BAD_REQUEST,\n            )\n        return Response(status=status.HTTP_204_NO_CONTENT)",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "CustomTokenObtainPairView",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class CustomTokenObtainPairView(TokenObtainPairView):\n    serializer_class = CustomTokenObtainPairSerializer\nclass ChangePasswordView(generics.GenericAPIView):\n    model = User\n    permission_classes = [IsAuthenticated]\n    serializer_class = ChangePasswordSerializer\n    def get_object(self, queryset=None):\n        obj = self.request.user\n        return obj\n    def put(self, request, *args, **kwargs):",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "ChangePasswordView",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class ChangePasswordView(generics.GenericAPIView):\n    model = User\n    permission_classes = [IsAuthenticated]\n    serializer_class = ChangePasswordSerializer\n    def get_object(self, queryset=None):\n        obj = self.request.user\n        return obj\n    def put(self, request, *args, **kwargs):\n        self.object = self.get_object()\n        serializer = self.get_serializer(data=request.data)",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 5,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "User = get_user_model()\nclass RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            data = {\n                \"email\": serializer.validated_data[\"email\"]\n            }",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },

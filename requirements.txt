@@ -2,6 +2,7 @@
 # general modules
 django > 4.2, <4.3
 djangorestframework
+djangorestframework-simplejwt
 python-decouple
 Pillow
 

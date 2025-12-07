@@ -35,123 +35,11 @@
         "documentation": {}
     },
     {
-        "label": "serializers",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "status",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "generics",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "permissions",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "serializers",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "status",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "permissions",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
-        "isExtraImport": true,
-        "detail": "rest_framework",
-        "documentation": {}
-    },
-    {
-        "label": "validate_password",
-        "importPath": "django.contrib.auth.password_validation",
-        "description": "django.contrib.auth.password_validation",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.password_validation",
-        "documentation": {}
-    },
-    {
-        "label": "exceptions",
-        "importPath": "django.core",
-        "description": "django.core",
-        "isExtraImport": true,
-        "detail": "django.core",
-        "documentation": {}
-    },
-    {
-        "label": "authenticate",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "gettext_lazy",
-        "importPath": "django.utils.translation",
-        "description": "django.utils.translation",
-        "isExtraImport": true,
-        "detail": "django.utils.translation",
-        "documentation": {}
-    },
-    {
-        "label": "gettext_lazy",
-        "importPath": "django.utils.translation",
-        "description": "django.utils.translation",
-        "isExtraImport": true,
-        "detail": "django.utils.translation",
-        "documentation": {}
-    },
-    {
-        "label": "TokenObtainPairSerializer",
-        "importPath": "rest_framework_simplejwt.serializers",
-        "description": "rest_framework_simplejwt.serializers",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.serializers",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -243,19 +131,11 @@
         "documentation": {}
     },
     {
-        "label": "DefaultRouter",
-        "importPath": "rest_framework.routers",
-        "description": "rest_framework.routers",
+        "label": "ObtainAuthToken",
+        "importPath": "rest_framework.authtoken.views",
+        "description": "rest_framework.authtoken.views",
         "isExtraImport": true,
-        "detail": "rest_framework.routers",
-        "documentation": {}
-    },
-    {
-        "label": "DefaultRouter",
-        "importPath": "rest_framework.routers",
-        "description": "rest_framework.routers",
-        "isExtraImport": true,
-        "detail": "rest_framework.routers",
+        "detail": "rest_framework.authtoken.views",
         "documentation": {}
     },
     {
@@ -304,6 +184,174 @@
         "description": "rest_framework_simplejwt.views",
         "isExtraImport": true,
         "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "DefaultRouter",
+        "importPath": "rest_framework.routers",
+        "description": "rest_framework.routers",
+        "isExtraImport": true,
+        "detail": "rest_framework.routers",
+        "documentation": {}
+    },
+    {
+        "label": "DefaultRouter",
+        "importPath": "rest_framework.routers",
+        "description": "rest_framework.routers",
+        "isExtraImport": true,
+        "detail": "rest_framework.routers",
+        "documentation": {}
+    },
+    {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "generics",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "permissions",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "permissions",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "Profile",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
+        "label": "Profile",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
+        "label": "Profile",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
+        "label": "validate_password",
+        "importPath": "django.contrib.auth.password_validation",
+        "description": "django.contrib.auth.password_validation",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.password_validation",
+        "documentation": {}
+    },
+    {
+        "label": "exceptions",
+        "importPath": "django.core",
+        "description": "django.core",
+        "isExtraImport": true,
+        "detail": "django.core",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairSerializer",
+        "importPath": "rest_framework_simplejwt.serializers",
+        "description": "rest_framework_simplejwt.serializers",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.serializers",
         "documentation": {}
     },
     {
@@ -403,6 +451,46 @@
         "documentation": {}
     },
     {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -420,6 +508,30 @@
     },
     {
         "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -524,6 +636,46 @@
         "documentation": {}
     },
     {
+        "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractBaseUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "BaseUserManager",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "PermissionsMixin",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -588,46 +740,6 @@
         "documentation": {}
     },
     {
-        "label": "AbstractBaseUser",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "BaseUserManager",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "PermissionsMixin",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "post_save",
-        "importPath": "django.db.models.signals",
-        "description": "django.db.models.signals",
-        "isExtraImport": true,
-        "detail": "django.db.models.signals",
-        "documentation": {}
-    },
-    {
-        "label": "receiver",
-        "importPath": "django.dispatch",
-        "description": "django.dispatch",
-        "isExtraImport": true,
-        "detail": "django.dispatch",
-        "documentation": {}
-    },
-    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -641,38 +753,6 @@
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "get_object_or_404",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -713,22 +793,6 @@
         "description": "blog.models",
         "isExtraImport": true,
         "detail": "blog.models",
-        "documentation": {}
-    },
-    {
-        "label": "Profile",
-        "importPath": "accounts.models",
-        "description": "accounts.models",
-        "isExtraImport": true,
-        "detail": "accounts.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "accounts.models",
-        "description": "accounts.models",
-        "isExtraImport": true,
-        "detail": "accounts.models",
         "documentation": {}
     },
     {
@@ -1077,6 +1141,24 @@
         "documentation": {}
     },
     {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "core.accounts.api.v1.urls.accounts",
+        "description": "core.accounts.api.v1.urls.accounts",
+        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    path(\"change-password/\", views.ChangePasswordView.as_view(),\n            name=\"change-password\"),\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\", views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),",
+        "detail": "core.accounts.api.v1.urls.accounts",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "core.accounts.api.v1.urls.profiles",
+        "description": "core.accounts.api.v1.urls.profiles",
+        "peekOfCode": "urlpatterns = [\n    # profile\n    path(\"\", views.ProfileApiView.as_view(), name=\"profile\"),\n]",
+        "detail": "core.accounts.api.v1.urls.profiles",
+        "documentation": {}
+    },
+    {
         "label": "RegistrationSerializer",
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
@@ -1099,7 +1181,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):\n    def validate(self, attrs):\n        validated_data = super().validate(attrs)\n        validated_data[\"email\"] = self.user.email\n        validated_data[\"user_id\"] = self.user.id\n        return validated_data\nclass ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)",
+        "peekOfCode": "class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):\n    def validate(self, attrs):\n        validated_data = super().validate(attrs)\n        if not self.user.is_verified:\n                raise serializers.ValidationError({\"details\":\"user is not verified\"})\n        validated_data[\"email\"] = self.user.email\n        validated_data[\"user_id\"] = self.user.id\n        return validated_data\nclass ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1113,21 +1195,12 @@
         "documentation": {}
     },
     {
-        "label": "app_name",
-        "kind": 5,
-        "importPath": "core.accounts.api.v1.urls",
-        "description": "core.accounts.api.v1.urls",
-        "peekOfCode": "app_name = \"api-v1\"\nurlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    path(\"change-password/\",views.ChangePasswordView.as_view(),name=\"change-password\"),\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\",views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),",
-        "detail": "core.accounts.api.v1.urls",
-        "documentation": {}
-    },
-    {
-        "label": "urlpatterns",
-        "kind": 5,
-        "importPath": "core.accounts.api.v1.urls",
-        "description": "core.accounts.api.v1.urls",
-        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    path(\"change-password/\",views.ChangePasswordView.as_view(),name=\"change-password\"),\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\",views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),\n    # login jwt",
-        "detail": "core.accounts.api.v1.urls",
+        "label": "ProfileSerializer",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.serializers",
+        "description": "core.accounts.api.v1.serializers",
+        "peekOfCode": "class ProfileSerializer(serializers.ModelSerializer):\n    email = serializers.CharField(source=\"user.email\", read_only=True)\n    class Meta:\n        model = Profile\n        fields = (\"id\", \"email\", \"first_name\",\n                    \"last_name\", \"image\", \"description\")\n        read_only_fields = [\"email\",]",
+        "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
     {
@@ -1176,6 +1249,15 @@
         "documentation": {}
     },
     {
+        "label": "ProfileApiView",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class ProfileApiView(generics.RetrieveUpdateAPIView):\n    serializer_class = ProfileSerializer\n    queryset = Profile.objects.all()\n    def get_object(self,):\n        queryset = self.get_queryset()\n        obj = get_object_or_404(queryset, user=self.request.user)\n        return obj",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "kind": 5,
         "importPath": "core.accounts.api.v1.views",
@@ -1203,11 +1285,56 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "core.accounts.migrations.0003_user_is_verified",
+        "description": "core.accounts.migrations.0003_user_is_verified",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('accounts', '0002_profile'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='user',\n            name='is_verified',\n            field=models.BooleanField(default=False),\n        ),",
+        "detail": "core.accounts.migrations.0003_user_is_verified",
+        "documentation": {}
+    },
+    {
+        "label": "Profile",
+        "kind": 6,
+        "importPath": "core.accounts.models.profiles",
+        "description": "core.accounts.models.profiles",
+        "peekOfCode": "class Profile(models.Model):\n    user = models.ForeignKey(User,on_delete=models.CASCADE)\n    first_name = models.CharField(max_length=250)\n    last_name = models.CharField(max_length=250)\n    image = models.ImageField(blank=True, null=True)\n    description = models.TextField()\n    created_date = models.DateTimeField(auto_now_add=True)\n    updated_date = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.user.email",
+        "detail": "core.accounts.models.profiles",
+        "documentation": {}
+    },
+    {
+        "label": "save_profile",
+        "kind": 2,
+        "importPath": "core.accounts.models.profiles",
+        "description": "core.accounts.models.profiles",
+        "peekOfCode": "def save_profile(sender,instance,created,**kwargs):\n    if created:\n        Profile.objects.create(user=instance)",
+        "detail": "core.accounts.models.profiles",
+        "documentation": {}
+    },
+    {
+        "label": "UserManager",
+        "kind": 6,
+        "importPath": "core.accounts.models.users",
+        "description": "core.accounts.models.users",
+        "peekOfCode": "class UserManager(BaseUserManager):\n    \"\"\"\n    custom user model manager where email is the unique identifiers\n    for authentication instead of username.\n    \"\"\"\n    def create_user(self, email, password, **extra_fields):\n        \"\"\"\n        create and save a user with the given email and password and extra data.\n        \"\"\"\n        if not email:",
+        "detail": "core.accounts.models.users",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "core.accounts.models.users",
+        "description": "core.accounts.models.users",
+        "peekOfCode": "class User(AbstractBaseUser, PermissionsMixin):\n    \"\"\"\n    custom user model for our application\n    \"\"\"\n    email = models.EmailField(max_length=254, unique=True)\n    is_staff = models.BooleanField(default=False)\n    is_superuser = models.BooleanField(default=False)\n    is_active = models.BooleanField(default=True)\n    first_name = models.CharField(max_length=254)\n    is_verified = models.BooleanField(default=False)",
+        "detail": "core.accounts.models.users",
+        "documentation": {}
+    },
+    {
         "label": "CustomUserAdmin",
         "kind": 6,
         "importPath": "core.accounts.admin",
         "description": "core.accounts.admin",
-        "peekOfCode": "class CustomUserAdmin(UserAdmin):\n    model = User\n    list_display = (\"email\", \"is_superuser\", \"is_active\")\n    list_filter = (\"email\", \"is_superuser\", \"is_active\")\n    search_fields = (\"email\",)\n    ordering = (\"email\",)\n    fieldsets = (\n        (\"Authentication\", {\n            \"fields\": (\n                \"email\",\"password\",",
+        "peekOfCode": "class CustomUserAdmin(UserAdmin):\n    model = User\n    list_display = (\"email\", \"is_superuser\", \"is_active\", \"is_verified\")\n    list_filter = (\"email\", \"is_superuser\", \"is_active\")\n    search_fields = (\"email\",)\n    ordering = (\"email\",)\n    fieldsets = (\n        (\"Authentication\", {\n            \"fields\": (\n                \"email\",\"password\",",
         "detail": "core.accounts.admin",
         "documentation": {}
     },
@@ -1218,42 +1345,6 @@
         "description": "core.accounts.apps",
         "peekOfCode": "class AccountsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'accounts'",
         "detail": "core.accounts.apps",
-        "documentation": {}
-    },
-    {
-        "label": "UserManager",
-        "kind": 6,
-        "importPath": "core.accounts.models",
-        "description": "core.accounts.models",
-        "peekOfCode": "class UserManager(BaseUserManager):\n    \"\"\"\n    custom user model manager where email is the unique identifiers\n    for authentication instead of username.\n    \"\"\"\n    def create_user(self, email, password, **extra_fields):\n        \"\"\"\n        create and save a user with the given email and password and extra data.\n        \"\"\"\n        if not email:",
-        "detail": "core.accounts.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "kind": 6,
-        "importPath": "core.accounts.models",
-        "description": "core.accounts.models",
-        "peekOfCode": "class User(AbstractBaseUser, PermissionsMixin):\n    \"\"\"\n    custom user model for our application\n    \"\"\"\n    email = models.EmailField(max_length=254, unique=True)\n    is_staff = models.BooleanField(default=False)\n    is_superuser = models.BooleanField(default=False)\n    is_active = models.BooleanField(default=True)\n    first_name = models.CharField(max_length=254)\n    # is_verified = models.BooleanField(default=False)",
-        "detail": "core.accounts.models",
-        "documentation": {}
-    },
-    {
-        "label": "Profile",
-        "kind": 6,
-        "importPath": "core.accounts.models",
-        "description": "core.accounts.models",
-        "peekOfCode": "class Profile(models.Model):\n    user = models.ForeignKey(User,on_delete=models.CASCADE)\n    first_name = models.CharField(max_length=250)\n    last_name = models.CharField(max_length=250)\n    image = models.ImageField(blank=True, null=True)\n    description = models.TextField()\n    created_date = models.DateTimeField(auto_now_add=True)\n    updated_date = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.user.email",
-        "detail": "core.accounts.models",
-        "documentation": {}
-    },
-    {
-        "label": "save_profile",
-        "kind": 2,
-        "importPath": "core.accounts.models",
-        "description": "core.accounts.models",
-        "peekOfCode": "def save_profile(sender,instance,created,**kwargs):\n    if created:\n        Profile.objects.create(user=instance)",
-        "detail": "core.accounts.models",
         "documentation": {}
     },
     {

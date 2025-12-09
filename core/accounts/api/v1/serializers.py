@@ -6,6 +6,8 @@ from django.core import exceptions
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import UntypedToken
+from rest_framework_simplejwt.exceptions import TokenError
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -130,4 +132,62 @@ class ActivationResendSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 {"details": "user is already verified"})
         attrs['user'] = user
+        return super().validate(attrs)
+
+
+class PasswordResetRequestSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+
+    def validate(self, attrs):
+        email = attrs.get("email")
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise serializers.ValidationError(
+                {"details": "user with this email does not exist"}
+            )
+
+        if not user.is_active:
+            raise serializers.ValidationError({"details": "user is inactive"})
+
+        attrs["user"] = user
+        return super().validate(attrs)
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    token = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+    new_password1 = serializers.CharField(required=True)
+
+    def validate(self, attrs):
+        token = attrs.get("token")
+        new_password = attrs.get("new_password")
+        new_password1 = attrs.get("new_password1")
+
+        if new_password != new_password1:
+            raise serializers.ValidationError(
+                {"details": "passwords does not match"}
+            )
+
+        try:
+            validate_password(new_password)
+        except exceptions.ValidationError as exc:
+            raise serializers.ValidationError({"new_password": list(exc.messages)})
+
+        try:
+            untoken = UntypedToken(token)
+        except TokenError:
+            raise serializers.ValidationError({"token": "token is invalid or expired"})
+
+        payload = untoken.payload
+        if payload.get("token_use") != "password_reset":
+            raise serializers.ValidationError({"token": "token type mismatch"})
+
+        user_id = payload.get("user_id")
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            raise serializers.ValidationError({"token": "user not found"})
+
+        attrs["user"] = user
         return super().validate(attrs)

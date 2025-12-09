@@ -19,6 +19,11 @@ urlpatterns = [
     path("change-password/", views.ChangePasswordView.as_view(),
         name="change-password"),
     # reset password
+    path("reset-password/request/", views.PasswordResetRequestView.as_view(),
+        name="reset-password-request"),
+    path("reset-password/confirm/", views.PasswordResetConfirmView.as_view(),
+        name="reset-password-confirm"),
+    
     # login token
     path("token/login/", views.CustomObtainAuthToken.as_view(), name="token-login"),
     path("token/logout/", views.CustomDiscardAuthToken.as_view(), name="token-logout"),

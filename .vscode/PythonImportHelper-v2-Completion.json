@@ -363,6 +363,38 @@
         "documentation": {}
     },
     {
+        "label": "UntypedToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "AccessToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "TokenError",
+        "importPath": "rest_framework_simplejwt.exceptions",
+        "description": "rest_framework_simplejwt.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.exceptions",
+        "documentation": {}
+    },
+    {
         "label": "decouple",
         "kind": 6,
         "isExtraImport": true,
@@ -377,6 +409,14 @@
         "description": "decouple",
         "isExtraImport": true,
         "detail": "decouple",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -506,14 +546,6 @@
         "description": "jwt.exceptions",
         "isExtraImport": true,
         "detail": "jwt.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "RefreshToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
         "documentation": {}
     },
     {
@@ -1304,6 +1336,24 @@
         "documentation": {}
     },
     {
+        "label": "PasswordResetRequestSerializer",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.serializers",
+        "description": "core.accounts.api.v1.serializers",
+        "peekOfCode": "class PasswordResetRequestSerializer(serializers.Serializer):\n    email = serializers.EmailField(required=True)\n    def validate(self, attrs):\n        email = attrs.get(\"email\")\n        try:\n            user = User.objects.get(email=email)\n        except User.DoesNotExist:\n            raise serializers.ValidationError(\n                {\"details\": \"user with this email does not exist\"}\n            )",
+        "detail": "core.accounts.api.v1.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordResetConfirmSerializer",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.serializers",
+        "description": "core.accounts.api.v1.serializers",
+        "peekOfCode": "class PasswordResetConfirmSerializer(serializers.Serializer):\n    token = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)\n    def validate(self, attrs):\n        token = attrs.get(\"token\")\n        new_password = attrs.get(\"new_password\")\n        new_password1 = attrs.get(\"new_password1\")\n        if new_password != new_password1:\n            raise serializers.ValidationError(",
+        "detail": "core.accounts.api.v1.serializers",
+        "documentation": {}
+    },
+    {
         "label": "RegistrationApiView",
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
@@ -1381,6 +1431,24 @@
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
         "peekOfCode": "class ActivationResendApiView(generics.GenericAPIView):\n    serializer_class = ActivationResendSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user_obj = serializer.validated_data['user']\n        token = self.get_tokens_for_user(user_obj)\n        email_obj = EmailMessage(\n            \"email/hello.tpl\", {\"token\": token}, \"admin@admin.com\", to=[user_obj.email],)\n        EmailThread(email_obj).start()",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordResetRequestView",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class PasswordResetRequestView(generics.GenericAPIView):\n    serializer_class = PasswordResetRequestSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = serializer.validated_data[\"user\"]\n        token = self._generate_reset_token(user)\n        email_obj = EmailMessage(\n            \"email/reset_password_email.tpl\",\n            {\"token\": token},",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "PasswordResetConfirmView",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class PasswordResetConfirmView(generics.GenericAPIView):\n    serializer_class = PasswordResetConfirmSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = serializer.validated_data[\"user\"]\n        user.set_password(serializer.validated_data[\"new_password\"])\n        user.save()\n        return Response({\"details\": \"password reset successfully\"}, status=status.HTTP_200_OK)",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },

@@ -10,6 +10,7 @@ Pillow
 markdown
 django-filter
 drf-yasg[validation]
-
+coreapi
+django-mail-templated
 
 # deployement

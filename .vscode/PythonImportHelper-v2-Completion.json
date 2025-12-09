@@ -211,7 +211,7 @@
         "documentation": {}
     },
     {
-        "label": "status",
+        "label": "generics",
         "importPath": "rest_framework",
         "description": "rest_framework",
         "isExtraImport": true,
@@ -219,7 +219,15 @@
         "documentation": {}
     },
     {
-        "label": "generics",
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
         "importPath": "rest_framework",
         "description": "rest_framework",
         "isExtraImport": true,
@@ -355,6 +363,23 @@
         "documentation": {}
     },
     {
+        "label": "decouple",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "decouple",
+        "description": "decouple",
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
         "label": "ViewSet",
         "importPath": "rest_framework.viewsets",
         "description": "rest_framework.viewsets",
@@ -376,6 +401,22 @@
         "description": "rest_framework.viewsets",
         "isExtraImport": true,
         "detail": "rest_framework.viewsets",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
         "documentation": {}
     },
     {
@@ -419,22 +460,6 @@
         "documentation": {}
     },
     {
-        "label": "APIView",
-        "importPath": "rest_framework.views",
-        "description": "rest_framework.views",
-        "isExtraImport": true,
-        "detail": "rest_framework.views",
-        "documentation": {}
-    },
-    {
-        "label": "APIView",
-        "importPath": "rest_framework.views",
-        "description": "rest_framework.views",
-        "isExtraImport": true,
-        "detail": "rest_framework.views",
-        "documentation": {}
-    },
-    {
         "label": "IsAuthenticated",
         "importPath": "rest_framework.permissions",
         "description": "rest_framework.permissions",
@@ -448,6 +473,47 @@
         "description": "rest_framework.permissions",
         "isExtraImport": true,
         "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jwt",
+        "description": "jwt",
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "ExpiredSignatureError",
+        "importPath": "jwt.exceptions",
+        "description": "jwt.exceptions",
+        "isExtraImport": true,
+        "detail": "jwt.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidTokenError",
+        "importPath": "jwt.exceptions",
+        "description": "jwt.exceptions",
+        "isExtraImport": true,
+        "detail": "jwt.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidSignatureError",
+        "importPath": "jwt.exceptions",
+        "description": "jwt.exceptions",
+        "isExtraImport": true,
+        "detail": "jwt.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
         "documentation": {}
     },
     {
@@ -491,115 +557,11 @@
         "documentation": {}
     },
     {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
         "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "django.core.mail",
         "documentation": {}
     },
     {
@@ -624,6 +586,143 @@
         "description": "django.conf",
         "isExtraImport": true,
         "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "EmailMessage",
+        "importPath": "mail_templated",
+        "description": "mail_templated",
+        "isExtraImport": true,
+        "detail": "mail_templated",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -1012,14 +1111,6 @@
         "documentation": {}
     },
     {
-        "label": "config",
-        "importPath": "decouple",
-        "description": "decouple",
-        "isExtraImport": true,
-        "detail": "decouple",
-        "documentation": {}
-    },
-    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -1145,7 +1236,7 @@
         "kind": 5,
         "importPath": "core.accounts.api.v1.urls.accounts",
         "description": "core.accounts.api.v1.urls.accounts",
-        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    # change password\n    path(\"change-password/\", views.ChangePasswordView.as_view(),\n            name=\"change-password\"),\n    # reset password\n    # login token\n    path(\"token/login/\", views.CustomObtainAuthToken.as_view(), name=\"token-login\"),\n    path(\"token/logout/\", views.CustomDiscardAuthToken.as_view(), name=\"token-logout\"),",
+        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    path(\"test-email/\",views.TestEmailSend.as_view(),name=\"test-email\"),\n    # activation\n    path(\"activation/confirm/<str:token>\",views.ActivationApiView.as_view(),name=\"activation\"),\n    # resend activation\n    path(\"activation/resend/\",views.ActivationResendApiView.as_view(),name=\"activation-resend\"),\n    # change password\n    path(\"change-password/\", views.ChangePasswordView.as_view(),",
         "detail": "core.accounts.api.v1.urls.accounts",
         "documentation": {}
     },
@@ -1199,7 +1290,16 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class ProfileSerializer(serializers.ModelSerializer):\n    email = serializers.CharField(source=\"user.email\", read_only=True)\n    class Meta:\n        model = Profile\n        fields = (\"id\", \"email\", \"first_name\",\n                    \"last_name\", \"image\", \"description\")\n        read_only_fields = [\"email\",]",
+        "peekOfCode": "class ProfileSerializer(serializers.ModelSerializer):\n    email = serializers.CharField(source=\"user.email\", read_only=True)\n    class Meta:\n        model = Profile\n        fields = (\"id\", \"email\", \"first_name\",\n                    \"last_name\", \"image\", \"description\")\n        read_only_fields = [\"email\",]\nclass ActivationResendSerializer(serializers.Serializer):\n    email = serializers.EmailField(required=True)\n    def validate(self, attrs):",
+        "detail": "core.accounts.api.v1.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ActivationResendSerializer",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.serializers",
+        "description": "core.accounts.api.v1.serializers",
+        "peekOfCode": "class ActivationResendSerializer(serializers.Serializer):\n    email = serializers.EmailField(required=True)\n    def validate(self, attrs):\n        email = attrs.get(\"email\")\n        try:\n            user = User.objects.get(email=email)\n        except User.DoesNotExist:\n            raise serializers.ValidationError(\n                {\"details\": \"user with this email does not exist\"})\n        if user.is_verified:",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1208,7 +1308,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            data = {\n                \"email\": serializer.validated_data[\"email\"]\n            }\n            return Response(data, status=status.HTTP_201_CREATED)",
+        "peekOfCode": "class RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            email = serializer.validated_data[\"email\"]\n            data = {\n                \"email\": email\n            }",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1253,7 +1353,34 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class ProfileApiView(generics.RetrieveUpdateAPIView):\n    serializer_class = ProfileSerializer\n    queryset = Profile.objects.all()\n    def get_object(self,):\n        queryset = self.get_queryset()\n        obj = get_object_or_404(queryset, user=self.request.user)\n        return obj",
+        "peekOfCode": "class ProfileApiView(generics.RetrieveUpdateAPIView):\n    serializer_class = ProfileSerializer\n    queryset = Profile.objects.all()\n    def get_object(self,):\n        queryset = self.get_queryset()\n        obj = get_object_or_404(queryset, user=self.request.user)\n        return obj\nclass TestEmailSend(generics.GenericAPIView):\n    \"\"\"\n    Sends the hello email template to either the authenticated user",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "TestEmailSend",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class TestEmailSend(generics.GenericAPIView):\n    \"\"\"\n    Sends the hello email template to either the authenticated user\n    or the email provided through the `email` query parameter.\n    \"\"\"\n    serializer_class = serializers.Serializer  # no request body, but DRF expects a serializer\n    def get(self, request, *args, **kwargs):\n        email = request.query_params.get(\"email\")\n        if not email and request.user.is_authenticated:\n            email = request.user.email",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "ActivationApiView",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class ActivationApiView(APIView):\n    def _generate_tokens(self, user):\n        \"\"\"Return both refresh and access tokens for the user.\"\"\"\n        refresh = RefreshToken.for_user(user)\n        return {\n            \"refresh\": str(refresh),\n            \"access\": str(refresh.access_token),\n        }\n    def get(self, request, token, *args, **kwargs):\n        try:",
+        "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "ActivationResendApiView",
+        "kind": 6,
+        "importPath": "core.accounts.api.v1.views",
+        "description": "core.accounts.api.v1.views",
+        "peekOfCode": "class ActivationResendApiView(generics.GenericAPIView):\n    serializer_class = ActivationResendSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user_obj = serializer.validated_data['user']\n        token = self.get_tokens_for_user(user_obj)\n        email_obj = EmailMessage(\n            \"email/hello.tpl\", {\"token\": token}, \"admin@admin.com\", to=[user_obj.email],)\n        EmailThread(email_obj).start()",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1262,8 +1389,17 @@
         "kind": 5,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "User = get_user_model()\nclass RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            data = {\n                \"email\": serializer.validated_data[\"email\"]\n            }",
+        "peekOfCode": "User = get_user_model()\nclass RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            email = serializer.validated_data[\"email\"]\n            data = {\n                \"email\": email",
         "detail": "core.accounts.api.v1.views",
+        "documentation": {}
+    },
+    {
+        "label": "EmailThread",
+        "kind": 6,
+        "importPath": "core.accounts.api.utils",
+        "description": "core.accounts.api.utils",
+        "peekOfCode": "class EmailThread(threading.Thread):\n    def __init__(self, email_obj):\n        threading.Thread.__init__(self)\n        self.email_obj = email_obj\n    def run(self):\n        self.email_obj.send()",
+        "detail": "core.accounts.api.utils",
         "documentation": {}
     },
     {
@@ -1911,6 +2047,60 @@
         "importPath": "core.core.settings",
         "description": "core.core.settings",
         "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\":[\n        'rest_framework.authentication.BasicAuthentication',\n        'rest_framework.authentication.SessionAuthentication',\n        'rest_framework.authentication.TokenAuthentication',\n        #jwt\n        'rest_framework_simplejwt.authentication.JWTAuthentication'\n    ]\n}",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "EMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_USE_TLS",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "EMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "EMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_USER",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "EMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_PASSWORD",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_PORT",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "EMAIL_PORT = 25",
         "detail": "core.core.settings",
         "documentation": {}
     },

@@ -91,6 +91,22 @@
         "documentation": {}
     },
     {
+        "label": "resolve",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "include",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -392,23 +408,6 @@
         "description": "rest_framework_simplejwt.exceptions",
         "isExtraImport": true,
         "detail": "rest_framework_simplejwt.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "decouple",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "decouple",
-        "description": "decouple",
-        "detail": "decouple",
-        "documentation": {}
-    },
-    {
-        "label": "config",
-        "importPath": "decouple",
-        "description": "decouple",
-        "isExtraImport": true,
-        "detail": "decouple",
         "documentation": {}
     },
     {
@@ -887,6 +886,14 @@
         "documentation": {}
     },
     {
+        "label": "SimpleTestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
         "label": "PageNumberPagination",
         "importPath": "rest_framework.pagination",
         "description": "rest_framework.pagination",
@@ -1143,6 +1150,14 @@
         "documentation": {}
     },
     {
+        "label": "config",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -1268,7 +1283,7 @@
         "kind": 5,
         "importPath": "core.accounts.api.v1.urls.accounts",
         "description": "core.accounts.api.v1.urls.accounts",
-        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    path(\"test-email/\",views.TestEmailSend.as_view(),name=\"test-email\"),\n    # activation\n    path(\"activation/confirm/<str:token>\",views.ActivationApiView.as_view(),name=\"activation\"),\n    # resend activation\n    path(\"activation/resend/\",views.ActivationResendApiView.as_view(),name=\"activation-resend\"),\n    # change password\n    path(\"change-password/\", views.ChangePasswordView.as_view(),",
+        "peekOfCode": "urlpatterns = [\n    # registration\n    path(\"registration/\", views.RegistrationApiView.as_view(), name=\"registration\"),\n    path(\"test-email/\", views.TestEmailSend.as_view(), name=\"test-email\"),\n    # activation\n    path(\n        \"activation/confirm/<str:token>\",\n        views.ActivationApiView.as_view(),\n        name=\"activation\",\n    ),",
         "detail": "core.accounts.api.v1.urls.accounts",
         "documentation": {}
     },
@@ -1286,7 +1301,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class RegistrationSerializer(serializers.ModelSerializer):\n    password1 = serializers.CharField(max_length=250, write_only=True)\n    class Meta:\n        model = User\n        fields = [\"email\", \"password\", \"password1\"]\n    def validate(self, attrs):\n        if attrs.get('password') != attrs.get(\"password1\"):\n            raise serializers.ValidationError(\n                {\"datails\": \"passwords does not match\"})\n        try:",
+        "peekOfCode": "class RegistrationSerializer(serializers.ModelSerializer):\n    password1 = serializers.CharField(max_length=250, write_only=True)\n    class Meta:\n        model = User\n        fields = [\"email\", \"password\", \"password1\"]\n    def validate(self, attrs):\n        if attrs.get(\"password\") != attrs.get(\"password1\"):\n            raise serializers.ValidationError({\"datails\": \"passwords does not match\"})\n        try:\n            validate_password(attrs.get(\"password\"))",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1295,7 +1310,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class CustomAuthTokenSerializer(serializers.Serializer):\n    email = serializers.CharField(\n        label=_(\"Email\"),\n        write_only=True\n    )\n    password = serializers.CharField(\n        label=_(\"Password\"),\n        style={'input_type': 'password'},\n        trim_whitespace=False,\n        write_only=True",
+        "peekOfCode": "class CustomAuthTokenSerializer(serializers.Serializer):\n    email = serializers.CharField(label=_(\"Email\"), write_only=True)\n    password = serializers.CharField(\n        label=_(\"Password\"),\n        style={\"input_type\": \"password\"},\n        trim_whitespace=False,\n        write_only=True,\n    )\n    token = serializers.CharField(label=_(\"Token\"), read_only=True)\n    def validate(self, attrs):",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1304,7 +1319,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):\n    def validate(self, attrs):\n        validated_data = super().validate(attrs)\n        if not self.user.is_verified:\n                raise serializers.ValidationError({\"details\":\"user is not verified\"})\n        validated_data[\"email\"] = self.user.email\n        validated_data[\"user_id\"] = self.user.id\n        return validated_data\nclass ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)",
+        "peekOfCode": "class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):\n    def validate(self, attrs):\n        validated_data = super().validate(attrs)\n        if not self.user.is_verified:\n            raise serializers.ValidationError({\"details\": \"user is not verified\"})\n        validated_data[\"email\"] = self.user.email\n        validated_data[\"user_id\"] = self.user.id\n        return validated_data\nclass ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1313,7 +1328,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)\n    def validate(self, attrs):\n        if attrs.get('new_password') != attrs.get(\"new_password1\"):\n            raise serializers.ValidationError(\n                {\"datails\": \"passwords does not match\"})\n        try:\n            validate_password(attrs.get(\"new_password\"))",
+        "peekOfCode": "class ChangePasswordSerializer(serializers.Serializer):\n    old_password = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)\n    def validate(self, attrs):\n        if attrs.get(\"new_password\") != attrs.get(\"new_password1\"):\n            raise serializers.ValidationError({\"datails\": \"passwords does not match\"})\n        try:\n            validate_password(attrs.get(\"new_password\"))\n        except exceptions.ValidationError as e:",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1322,7 +1337,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class ProfileSerializer(serializers.ModelSerializer):\n    email = serializers.CharField(source=\"user.email\", read_only=True)\n    class Meta:\n        model = Profile\n        fields = (\"id\", \"email\", \"first_name\",\n                    \"last_name\", \"image\", \"description\")\n        read_only_fields = [\"email\",]\nclass ActivationResendSerializer(serializers.Serializer):\n    email = serializers.EmailField(required=True)\n    def validate(self, attrs):",
+        "peekOfCode": "class ProfileSerializer(serializers.ModelSerializer):\n    email = serializers.CharField(source=\"user.email\", read_only=True)\n    class Meta:\n        model = Profile\n        fields = (\"id\", \"email\", \"first_name\", \"last_name\", \"image\", \"description\")\n        read_only_fields = [\n            \"email\",\n        ]\nclass ActivationResendSerializer(serializers.Serializer):\n    email = serializers.EmailField(required=True)",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1331,7 +1346,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class ActivationResendSerializer(serializers.Serializer):\n    email = serializers.EmailField(required=True)\n    def validate(self, attrs):\n        email = attrs.get(\"email\")\n        try:\n            user = User.objects.get(email=email)\n        except User.DoesNotExist:\n            raise serializers.ValidationError(\n                {\"details\": \"user with this email does not exist\"})\n        if user.is_verified:",
+        "peekOfCode": "class ActivationResendSerializer(serializers.Serializer):\n    email = serializers.EmailField(required=True)\n    def validate(self, attrs):\n        email = attrs.get(\"email\")\n        try:\n            user = User.objects.get(email=email)\n        except User.DoesNotExist:\n            raise serializers.ValidationError(\n                {\"details\": \"user with this email does not exist\"}\n            )",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1349,7 +1364,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.serializers",
         "description": "core.accounts.api.v1.serializers",
-        "peekOfCode": "class PasswordResetConfirmSerializer(serializers.Serializer):\n    token = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)\n    def validate(self, attrs):\n        token = attrs.get(\"token\")\n        new_password = attrs.get(\"new_password\")\n        new_password1 = attrs.get(\"new_password1\")\n        if new_password != new_password1:\n            raise serializers.ValidationError(",
+        "peekOfCode": "class PasswordResetConfirmSerializer(serializers.Serializer):\n    token = serializers.CharField(required=True)\n    new_password = serializers.CharField(required=True)\n    new_password1 = serializers.CharField(required=True)\n    class Meta:\n        ref_name = \"PasswordResetConfirmSerializerV1\"\n    def validate(self, attrs):\n        token = attrs.get(\"token\")\n        new_password = attrs.get(\"new_password\")\n        new_password1 = attrs.get(\"new_password1\")",
         "detail": "core.accounts.api.v1.serializers",
         "documentation": {}
     },
@@ -1358,7 +1373,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            email = serializer.validated_data[\"email\"]\n            data = {\n                \"email\": email\n            }",
+        "peekOfCode": "class RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            email = serializer.validated_data[\"email\"]\n            data = {\"email\": email}\n            user_obj = get_object_or_404(User, email=email)\n            token = self.get_tokens_for_user(user_obj)",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1367,7 +1382,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class CustomObtainAuthToken(ObtainAuthToken):\n    serializer_class = CustomAuthTokenSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.serializer_class(\n            data=request.data, context={\"request\": request})\n        serializer.is_valid(raise_exception=True)\n        user = serializer.validated_data['user']\n        token, created = Token.objects.get_or_create(user=user)\n        return Response({\n            'token': token.key,",
+        "peekOfCode": "class CustomObtainAuthToken(ObtainAuthToken):\n    serializer_class = CustomAuthTokenSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.serializer_class(\n            data=request.data, context={\"request\": request}\n        )\n        serializer.is_valid(raise_exception=True)\n        user = serializer.validated_data[\"user\"]\n        token, created = Token.objects.get_or_create(user=user)\n        return Response({\"token\": token.key, \"user_id\": user.pk, \"email\": user.email})",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1403,7 +1418,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class ProfileApiView(generics.RetrieveUpdateAPIView):\n    serializer_class = ProfileSerializer\n    queryset = Profile.objects.all()\n    def get_object(self,):\n        queryset = self.get_queryset()\n        obj = get_object_or_404(queryset, user=self.request.user)\n        return obj\nclass TestEmailSend(generics.GenericAPIView):\n    \"\"\"\n    Sends the hello email template to either the authenticated user",
+        "peekOfCode": "class ProfileApiView(generics.RetrieveUpdateAPIView):\n    serializer_class = ProfileSerializer\n    queryset = Profile.objects.all()\n    def get_object(\n        self,\n    ):\n        queryset = self.get_queryset()\n        obj = get_object_or_404(queryset, user=self.request.user)\n        return obj\nclass TestEmailSend(generics.GenericAPIView):",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1412,7 +1427,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class TestEmailSend(generics.GenericAPIView):\n    \"\"\"\n    Sends the hello email template to either the authenticated user\n    or the email provided through the `email` query parameter.\n    \"\"\"\n    serializer_class = serializers.Serializer  # no request body, but DRF expects a serializer\n    def get(self, request, *args, **kwargs):\n        email = request.query_params.get(\"email\")\n        if not email and request.user.is_authenticated:\n            email = request.user.email",
+        "peekOfCode": "class TestEmailSend(generics.GenericAPIView):\n    \"\"\"\n    Sends the hello email template to either the authenticated user\n    or the email provided through the `email` query parameter.\n    \"\"\"\n    serializer_class = (\n        serializers.Serializer\n    )  # no request body, but DRF expects a serializer\n    def get(self, request, *args, **kwargs):\n        email = request.query_params.get(\"email\")",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1430,7 +1445,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class ActivationResendApiView(generics.GenericAPIView):\n    serializer_class = ActivationResendSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user_obj = serializer.validated_data['user']\n        token = self.get_tokens_for_user(user_obj)\n        email_obj = EmailMessage(\n            \"email/hello.tpl\", {\"token\": token}, \"admin@admin.com\", to=[user_obj.email],)\n        EmailThread(email_obj).start()",
+        "peekOfCode": "class ActivationResendApiView(generics.GenericAPIView):\n    serializer_class = ActivationResendSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user_obj = serializer.validated_data[\"user\"]\n        token = self.get_tokens_for_user(user_obj)\n        email_obj = EmailMessage(\n            \"email/hello.tpl\",\n            {\"token\": token},",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1448,7 +1463,7 @@
         "kind": 6,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "class PasswordResetConfirmView(generics.GenericAPIView):\n    serializer_class = PasswordResetConfirmSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = serializer.validated_data[\"user\"]\n        user.set_password(serializer.validated_data[\"new_password\"])\n        user.save()\n        return Response({\"details\": \"password reset successfully\"}, status=status.HTTP_200_OK)",
+        "peekOfCode": "class PasswordResetConfirmView(generics.GenericAPIView):\n    serializer_class = PasswordResetConfirmSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = serializer.validated_data[\"user\"]\n        user.set_password(serializer.validated_data[\"new_password\"])\n        user.save()\n        return Response(\n            {\"details\": \"password reset successfully\"}, status=status.HTTP_200_OK",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1457,7 +1472,7 @@
         "kind": 5,
         "importPath": "core.accounts.api.v1.views",
         "description": "core.accounts.api.v1.views",
-        "peekOfCode": "User = get_user_model()\nclass RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            email = serializer.validated_data[\"email\"]\n            data = {\n                \"email\": email",
+        "peekOfCode": "User = get_user_model()\nclass RegistrationApiView(generics.GenericAPIView):\n    serializer_class = RegistrationSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = RegistrationSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            email = serializer.validated_data[\"email\"]\n            data = {\"email\": email}\n            user_obj = get_object_or_404(User, email=email)",
         "detail": "core.accounts.api.v1.views",
         "documentation": {}
     },
@@ -1475,7 +1490,7 @@
         "kind": 6,
         "importPath": "core.accounts.migrations.0001_initial",
         "description": "core.accounts.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        (\"auth\", \"0012_alter_user_first_name_max_length\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"User\",\n            fields=[\n                (",
         "detail": "core.accounts.migrations.0001_initial",
         "documentation": {}
     },
@@ -1484,7 +1499,7 @@
         "kind": 6,
         "importPath": "core.accounts.migrations.0002_profile",
         "description": "core.accounts.migrations.0002_profile",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('accounts', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Profile',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('first_name', models.CharField(max_length=250)),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        (\"accounts\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"Profile\",\n            fields=[\n                (\n                    \"id\",",
         "detail": "core.accounts.migrations.0002_profile",
         "documentation": {}
     },
@@ -1493,7 +1508,7 @@
         "kind": 6,
         "importPath": "core.accounts.migrations.0003_user_is_verified",
         "description": "core.accounts.migrations.0003_user_is_verified",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('accounts', '0002_profile'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='user',\n            name='is_verified',\n            field=models.BooleanField(default=False),\n        ),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        (\"accounts\", \"0002_profile\"),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name=\"user\",\n            name=\"is_verified\",\n            field=models.BooleanField(default=False),\n        ),",
         "detail": "core.accounts.migrations.0003_user_is_verified",
         "documentation": {}
     },
@@ -1502,7 +1517,7 @@
         "kind": 6,
         "importPath": "core.accounts.models.profiles",
         "description": "core.accounts.models.profiles",
-        "peekOfCode": "class Profile(models.Model):\n    user = models.ForeignKey(User,on_delete=models.CASCADE)\n    first_name = models.CharField(max_length=250)\n    last_name = models.CharField(max_length=250)\n    image = models.ImageField(blank=True, null=True)\n    description = models.TextField()\n    created_date = models.DateTimeField(auto_now_add=True)\n    updated_date = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.user.email",
+        "peekOfCode": "class Profile(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    first_name = models.CharField(max_length=250)\n    last_name = models.CharField(max_length=250)\n    image = models.ImageField(blank=True, null=True)\n    description = models.TextField()\n    created_date = models.DateTimeField(auto_now_add=True)\n    updated_date = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.user.email",
         "detail": "core.accounts.models.profiles",
         "documentation": {}
     },
@@ -1511,7 +1526,7 @@
         "kind": 2,
         "importPath": "core.accounts.models.profiles",
         "description": "core.accounts.models.profiles",
-        "peekOfCode": "def save_profile(sender,instance,created,**kwargs):\n    if created:\n        Profile.objects.create(user=instance)",
+        "peekOfCode": "def save_profile(sender, instance, created, **kwargs):\n    if created:\n        Profile.objects.create(user=instance)",
         "detail": "core.accounts.models.profiles",
         "documentation": {}
     },
@@ -1538,7 +1553,7 @@
         "kind": 6,
         "importPath": "core.accounts.admin",
         "description": "core.accounts.admin",
-        "peekOfCode": "class CustomUserAdmin(UserAdmin):\n    model = User\n    list_display = (\"email\", \"is_superuser\", \"is_active\", \"is_verified\")\n    list_filter = (\"email\", \"is_superuser\", \"is_active\")\n    search_fields = (\"email\",)\n    ordering = (\"email\",)\n    fieldsets = (\n        (\"Authentication\", {\n            \"fields\": (\n                \"email\",\"password\",",
+        "peekOfCode": "class CustomUserAdmin(UserAdmin):\n    model = User\n    list_display = (\"email\", \"is_superuser\", \"is_active\", \"is_verified\")\n    list_filter = (\"email\", \"is_superuser\", \"is_active\")\n    search_fields = (\"email\",)\n    ordering = (\"email\",)\n    fieldsets = (\n        (\n            \"Authentication\",\n            {",
         "detail": "core.accounts.admin",
         "documentation": {}
     },
@@ -1547,7 +1562,7 @@
         "kind": 6,
         "importPath": "core.accounts.apps",
         "description": "core.accounts.apps",
-        "peekOfCode": "class AccountsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'accounts'",
+        "peekOfCode": "class AccountsConfig(AppConfig):\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"accounts\"",
         "detail": "core.accounts.apps",
         "documentation": {}
     },
@@ -1556,7 +1571,7 @@
         "kind": 5,
         "importPath": "core.accounts.urls",
         "description": "core.accounts.urls",
-        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", include(\"django.contrib.auth.urls\")),\n    path(\"api/v1/\",include(\"accounts.api.v1.urls\")),\n]",
+        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", include(\"django.contrib.auth.urls\")),\n    path(\"api/v1/\", include(\"accounts.api.v1.urls\")),\n    path(\"api/v2/\", include(\"djoser.urls\")),\n    path(\"api/v2/\", include(\"djoser.urls.jwt\")),\n]",
         "detail": "core.accounts.urls",
         "documentation": {}
     },
@@ -1565,7 +1580,7 @@
         "kind": 5,
         "importPath": "core.accounts.urls",
         "description": "core.accounts.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"django.contrib.auth.urls\")),\n    path(\"api/v1/\",include(\"accounts.api.v1.urls\")),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"django.contrib.auth.urls\")),\n    path(\"api/v1/\", include(\"accounts.api.v1.urls\")),\n    path(\"api/v2/\", include(\"djoser.urls\")),\n    path(\"api/v2/\", include(\"djoser.urls.jwt\")),\n]",
         "detail": "core.accounts.urls",
         "documentation": {}
     },
@@ -1574,7 +1589,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.paginations",
         "description": "core.blog.api.v1.paginations",
-        "peekOfCode": "class LargeResultsSetPagination(PageNumberPagination):\n    page_size = 2\n    def get_paginated_response(self, data):\n        return Response({\n            'links': {\n                'next': self.get_next_link(),\n                'previous': self.get_previous_link()\n            },\n            'total_objects': self.page.paginator.count,\n            'total_pages': self.page.paginator.num_pages,",
+        "peekOfCode": "class LargeResultsSetPagination(PageNumberPagination):\n    page_size = 2\n    def get_paginated_response(self, data):\n        return Response(\n            {\n                \"links\": {\n                    \"next\": self.get_next_link(),\n                    \"previous\": self.get_previous_link(),\n                },\n                \"total_objects\": self.page.paginator.count,",
         "detail": "core.blog.api.v1.paginations",
         "documentation": {}
     },
@@ -1592,7 +1607,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.serializers",
         "description": "core.blog.api.v1.serializers",
-        "peekOfCode": "class CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = \"__all__\"\nclass PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(\n        source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(",
+        "peekOfCode": "class CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = \"__all__\"\nclass PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all()",
         "detail": "core.blog.api.v1.serializers",
         "documentation": {}
     },
@@ -1601,7 +1616,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.serializers",
         "description": "core.blog.api.v1.serializers",
-        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(\n        source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False,\n        read_only=False,\n        slug_field=\"name\",\n        queryset=Category.objects.all()",
+        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all()\n    )\n    class Meta:\n        model = Post\n        fields = \"__all__\"",
         "detail": "core.blog.api.v1.serializers",
         "documentation": {}
     },
@@ -1610,7 +1625,7 @@
         "kind": 5,
         "importPath": "core.blog.api.v1.urls",
         "description": "core.blog.api.v1.urls",
-        "peekOfCode": "app_name = \"api-v1\"\nrouter = DefaultRouter()\nrouter.register(\"post\", views.PostModelViewSet, basename=\"post\")\nrouter.register(\"category\",views.CategoryModelViewSet, basename=\"category\")\nurlpatterns = router.urls\n# urlpatterns = [\n#     # path(\"post/<int:id>/\",views.postDetail,name=\"post-detail\")\n#     # path(\"post/\",views.postList,name='post-list'),\n#     # path(\"post/\",views.PostList.as_view(),name=\"post-list\"),\n#     # path(\"post/<int:pk>/\",views.PostDetail.as_view(),name=\"post-detail\"),",
+        "peekOfCode": "app_name = \"api-v1\"\nrouter = DefaultRouter()\nrouter.register(\"post\", views.PostModelViewSet, basename=\"post\")\nrouter.register(\"category\", views.CategoryModelViewSet, basename=\"category\")\nurlpatterns = router.urls\n# urlpatterns = [\n#     # path(\"post/<int:id>/\",views.postDetail,name=\"post-detail\")\n#     # path(\"post/\",views.postList,name='post-list'),\n#     # path(\"post/\",views.PostList.as_view(),name=\"post-list\"),\n#     # path(\"post/<int:pk>/\",views.PostDetail.as_view(),name=\"post-detail\"),",
         "detail": "core.blog.api.v1.urls",
         "documentation": {}
     },
@@ -1619,7 +1634,7 @@
         "kind": 5,
         "importPath": "core.blog.api.v1.urls",
         "description": "core.blog.api.v1.urls",
-        "peekOfCode": "router = DefaultRouter()\nrouter.register(\"post\", views.PostModelViewSet, basename=\"post\")\nrouter.register(\"category\",views.CategoryModelViewSet, basename=\"category\")\nurlpatterns = router.urls\n# urlpatterns = [\n#     # path(\"post/<int:id>/\",views.postDetail,name=\"post-detail\")\n#     # path(\"post/\",views.postList,name='post-list'),\n#     # path(\"post/\",views.PostList.as_view(),name=\"post-list\"),\n#     # path(\"post/<int:pk>/\",views.PostDetail.as_view(),name=\"post-detail\"),\n#     path(",
+        "peekOfCode": "router = DefaultRouter()\nrouter.register(\"post\", views.PostModelViewSet, basename=\"post\")\nrouter.register(\"category\", views.CategoryModelViewSet, basename=\"category\")\nurlpatterns = router.urls\n# urlpatterns = [\n#     # path(\"post/<int:id>/\",views.postDetail,name=\"post-detail\")\n#     # path(\"post/\",views.postList,name='post-list'),\n#     # path(\"post/\",views.PostList.as_view(),name=\"post-list\"),\n#     # path(\"post/<int:pk>/\",views.PostDetail.as_view(),name=\"post-detail\"),\n#     path(",
         "detail": "core.blog.api.v1.urls",
         "documentation": {}
     },
@@ -1664,7 +1679,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.views",
         "description": "core.blog.api.v1.views",
-        "peekOfCode": "class PostDetail(RetrieveUpdateDestroyAPIView):\n    permission_classes = [IsAuthenticatedOrReadOnly]\n    serializer_class = PostSerializer\n    queryset = Post.objects.all()\n\"\"\"\nclass PostModelViewSet(ModelViewSet):\n    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]\n    serializer_class = PostSerializer\n    queryset = Post.objects.all()\n    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]",
+        "peekOfCode": "class PostDetail(RetrieveUpdateDestroyAPIView):\n    permission_classes = [IsAuthenticatedOrReadOnly]\n    serializer_class = PostSerializer\n    queryset = Post.objects.all()\n\"\"\"\nclass PostModelViewSet(ModelViewSet):\n    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]\n    serializer_class = PostSerializer\n    queryset = Post.objects.all()\n    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]",
         "detail": "core.blog.api.v1.views",
         "documentation": {}
     },
@@ -1673,7 +1688,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.views",
         "description": "core.blog.api.v1.views",
-        "peekOfCode": "class PostModelViewSet(ModelViewSet):\n    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]\n    serializer_class = PostSerializer\n    queryset = Post.objects.all()\n    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]\n    filterset_fields = [\"category\", \"author\", \"status\"]\n    search_fields = [\"title\",\"content\"]\n    ordering_fields = [\"published_date\"]\n    pagination_class = LargeResultsSetPagination\nclass CategoryModelViewSet(ModelViewSet):",
+        "peekOfCode": "class PostModelViewSet(ModelViewSet):\n    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]\n    serializer_class = PostSerializer\n    queryset = Post.objects.all()\n    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]\n    filterset_fields = [\"category\", \"author\", \"status\"]\n    search_fields = [\"title\", \"content\"]\n    ordering_fields = [\"published_date\"]\n    pagination_class = LargeResultsSetPagination\nclass CategoryModelViewSet(ModelViewSet):",
         "detail": "core.blog.api.v1.views",
         "documentation": {}
     },
@@ -1709,7 +1724,7 @@
         "kind": 6,
         "importPath": "core.blog.migrations.0001_initial",
         "description": "core.blog.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Category',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"Category\",\n            fields=[\n                (",
         "detail": "core.blog.migrations.0001_initial",
         "documentation": {}
     },
@@ -1718,7 +1733,7 @@
         "kind": 6,
         "importPath": "core.blog.migrations.0002_alter_post_author",
         "description": "core.blog.migrations.0002_alter_post_author",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('accounts', '0002_profile'),\n        ('blog', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='post',\n            name='author',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.profile'),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        (\"accounts\", \"0002_profile\"),\n        (\"blog\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name=\"post\",\n            name=\"author\",\n            field=models.ForeignKey(",
         "detail": "core.blog.migrations.0002_alter_post_author",
         "documentation": {}
     },
@@ -1727,8 +1742,17 @@
         "kind": 6,
         "importPath": "core.blog.migrations.0003_update_post_author",
         "description": "core.blog.migrations.0003_update_post_author",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('blog', '0002_alter_post_author'),\n    ]\n    operations = [\n    ]",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        (\"blog\", \"0002_alter_post_author\"),\n    ]\n    operations = []",
         "detail": "core.blog.migrations.0003_update_post_author",
+        "documentation": {}
+    },
+    {
+        "label": "TestUrl",
+        "kind": 6,
+        "importPath": "core.blog.tests.tests_blog_urls",
+        "description": "core.blog.tests.tests_blog_urls",
+        "peekOfCode": "class TestUrl(TestCase):\n    def test_blog_index_url_resolve(self):\n        url = reverse('blog:index')\n        self.assertEqual(resolve(url).func.view_class, IndexView)\n    def test_blog_post_list_url_resolve(self):\n        url = reverse('blog:post-list')\n        self.assertEqual(resolve(url).func.view_class, PostListView)\n    def test_blog_post_detail_url_resolve(self):\n        url = reverse('blog:post-detail', kwargs={'pk': 1})\n        self.assertEqual(resolve(url).func.view_class, PostDetailView)",
+        "detail": "core.blog.tests.tests_blog_urls",
         "documentation": {}
     },
     {
@@ -1736,7 +1760,7 @@
         "kind": 6,
         "importPath": "core.blog.admin",
         "description": "core.blog.admin",
-        "peekOfCode": "class PostAdmin(admin.ModelAdmin):\n    list_display=['author','title','status','category','published_date']\nadmin.site.register(Post)\nadmin.site.register(Category)",
+        "peekOfCode": "class PostAdmin(admin.ModelAdmin):\n    list_display = [\"author\", \"title\", \"status\", \"category\", \"published_date\"]\nadmin.site.register(Post)\nadmin.site.register(Category)",
         "detail": "core.blog.admin",
         "documentation": {}
     },
@@ -1745,7 +1769,7 @@
         "kind": 6,
         "importPath": "core.blog.apps",
         "description": "core.blog.apps",
-        "peekOfCode": "class BlogConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'blog'",
+        "peekOfCode": "class BlogConfig(AppConfig):\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"blog\"",
         "detail": "core.blog.apps",
         "documentation": {}
     },
@@ -1754,7 +1778,7 @@
         "kind": 6,
         "importPath": "core.blog.forms",
         "description": "core.blog.forms",
-        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = [\"title\",\"content\",\"status\",\"category\",\"published_date\"]\nclass ContactForm(forms.Form):\n    name = forms.CharField()\n    message = forms.CharField(widget=forms.Textarea)",
+        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = [\"title\", \"content\", \"status\", \"category\", \"published_date\"]\nclass ContactForm(forms.Form):\n    name = forms.CharField()\n    message = forms.CharField(widget=forms.Textarea)",
         "detail": "core.blog.forms",
         "documentation": {}
     },
@@ -1772,7 +1796,7 @@
         "kind": 6,
         "importPath": "core.blog.models",
         "description": "core.blog.models",
-        "peekOfCode": "class Post(models.Model):\n    '''\n    This is a class to define posts for blog\n    '''\n    author = models.ForeignKey(\"accounts.Profile\",on_delete=models.CASCADE)\n    image = models.ImageField(null=True, blank=True)\n    title = models.CharField(max_length=250)\n    content = models.TextField()\n    status = models.BooleanField()\n    category = models.ForeignKey(\"Category\", on_delete=models.SET_NULL, null=True)",
+        "peekOfCode": "class Post(models.Model):\n    \"\"\"\n    This is a class to define posts for blog\n    \"\"\"\n    author = models.ForeignKey(\"accounts.Profile\", on_delete=models.CASCADE)\n    image = models.ImageField(null=True, blank=True)\n    title = models.CharField(max_length=250)\n    content = models.TextField()\n    status = models.BooleanField()\n    category = models.ForeignKey(\"Category\", on_delete=models.SET_NULL, null=True)",
         "detail": "core.blog.models",
         "documentation": {}
     },
@@ -1781,7 +1805,7 @@
         "kind": 6,
         "importPath": "core.blog.models",
         "description": "core.blog.models",
-        "peekOfCode": "class Category(models.Model):\n    '''\n    This is a class to define categories for blog\n    '''\n    name = models.CharField(max_length=100)\n    def __str__(self):\n        return self.name",
+        "peekOfCode": "class Category(models.Model):\n    \"\"\"\n    This is a class to define categories for blog\n    \"\"\"\n    name = models.CharField(max_length=100)\n    def __str__(self):\n        return self.name",
         "detail": "core.blog.models",
         "documentation": {}
     },
@@ -1790,7 +1814,7 @@
         "kind": 5,
         "importPath": "core.blog.urls",
         "description": "core.blog.urls",
-        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\",views.PostListView.as_view(),name=\"post-list\"),\n    path(\"post/<int:pk>/\",views.PostDetailView.as_view(),name=\"post-detail\"),\n    path(\"post/create/\",views.PostCreateView.as_view(),name=\"post-create\"),\n    path(\"post/<int:pk>/update/\",views.PostUpdateView.as_view(),name=\"post-update\"),",
+        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n    path('', views.IndexView.as_view(), name='index'),\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\", views.PostListView.as_view(), name=\"post-list\"),\n    path(\"post/<int:pk>/\", views.PostDetailView.as_view(), name=\"post-detail\"),\n    path(\"post/create/\", views.PostCreateView.as_view(), name=\"post-create\"),",
         "detail": "core.blog.urls",
         "documentation": {}
     },
@@ -1799,7 +1823,7 @@
         "kind": 5,
         "importPath": "core.blog.urls",
         "description": "core.blog.urls",
-        "peekOfCode": "urlpatterns = [\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\",views.PostListView.as_view(),name=\"post-list\"),\n    path(\"post/<int:pk>/\",views.PostDetailView.as_view(),name=\"post-detail\"),\n    path(\"post/create/\",views.PostCreateView.as_view(),name=\"post-create\"),\n    path(\"post/<int:pk>/update/\",views.PostUpdateView.as_view(),name=\"post-update\"),\n    path(\"post/<int:pk>/delete/\",views.PostDeleteView.as_view(),name=\"post-delete\"),",
+        "peekOfCode": "urlpatterns = [\n    path('', views.IndexView.as_view(), name='index'),\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\", views.PostListView.as_view(), name=\"post-list\"),\n    path(\"post/<int:pk>/\", views.PostDetailView.as_view(), name=\"post-detail\"),\n    path(\"post/create/\", views.PostCreateView.as_view(), name=\"post-create\"),\n    path(\"post/<int:pk>/update/\", views.PostUpdateView.as_view(), name=\"post-update\"),",
         "detail": "core.blog.urls",
         "documentation": {}
     },
@@ -1808,7 +1832,7 @@
         "kind": 6,
         "importPath": "core.blog.views",
         "description": "core.blog.views",
-        "peekOfCode": "class IndexView(TemplateView):\n    \"\"\"\n    class based view to show index page\n    \"\"\"\n    template_name = 'index.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context[\"name\"] = \"alireza\"\n        context[\"posts\"] = Post.objects.all()\n        return context",
+        "peekOfCode": "class IndexView(TemplateView):\n    \"\"\"\n    class based view to show index page\n    \"\"\"\n    template_name = \"index.html\"\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context[\"name\"] = \"alireza\"\n        context[\"posts\"] = Post.objects.all()\n        return context",
         "detail": "core.blog.views",
         "documentation": {}
     },
@@ -1862,7 +1886,7 @@
         "kind": 6,
         "importPath": "core.blog.views",
         "description": "core.blog.views",
-        "peekOfCode": "class PostUpdateView(LoginRequiredMixin, UpdateView):\n    model = Post\n    form_class = PostForm\n    success_url = \"/blog/post/\"\nclass PostDeleteView(LoginRequiredMixin, DeleteView):\n    model = Post\n    success_url = \"/blog/post/\"\nclass APIPostListView():\n    pass\n@api_view()",
+        "peekOfCode": "class PostUpdateView(LoginRequiredMixin, UpdateView):\n    model = Post\n    form_class = PostForm\n    success_url = \"/blog/post/\"\nclass PostDeleteView(LoginRequiredMixin, DeleteView):\n    model = Post\n    success_url = \"/blog/post/\"\nclass APIPostListView:\n    pass\n@api_view()",
         "detail": "core.blog.views",
         "documentation": {}
     },
@@ -1871,7 +1895,7 @@
         "kind": 6,
         "importPath": "core.blog.views",
         "description": "core.blog.views",
-        "peekOfCode": "class PostDeleteView(LoginRequiredMixin, DeleteView):\n    model = Post\n    success_url = \"/blog/post/\"\nclass APIPostListView():\n    pass\n@api_view()\ndef api_post_list_view(request):\n    return Response(\"ok\")",
+        "peekOfCode": "class PostDeleteView(LoginRequiredMixin, DeleteView):\n    model = Post\n    success_url = \"/blog/post/\"\nclass APIPostListView:\n    pass\n@api_view()\ndef api_post_list_view(request):\n    return Response(\"ok\")",
         "detail": "core.blog.views",
         "documentation": {}
     },
@@ -1880,7 +1904,7 @@
         "kind": 6,
         "importPath": "core.blog.views",
         "description": "core.blog.views",
-        "peekOfCode": "class APIPostListView():\n    pass\n@api_view()\ndef api_post_list_view(request):\n    return Response(\"ok\")",
+        "peekOfCode": "class APIPostListView:\n    pass\n@api_view()\ndef api_post_list_view(request):\n    return Response(\"ok\")",
         "detail": "core.blog.views",
         "documentation": {}
     },
@@ -1889,7 +1913,7 @@
         "kind": 2,
         "importPath": "core.blog.views",
         "description": "core.blog.views",
-        "peekOfCode": "def indexView(request):\n    name = \"alireza\"\n    context = {\"name\":name}\n    return render(request,\"index.html\",context)\n\"\"\"\nclass IndexView(TemplateView):\n    \"\"\"\n    class based view to show index page\n    \"\"\"\n    template_name = 'index.html'",
+        "peekOfCode": "def indexView(request):\n    name = \"alireza\"\n    context = {\"name\":name}\n    return render(request,\"index.html\",context)\n\"\"\"\nclass IndexView(TemplateView):\n    \"\"\"\n    class based view to show index page\n    \"\"\"\n    template_name = \"index.html\"",
         "detail": "core.blog.views",
         "documentation": {}
     },
@@ -1916,7 +1940,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(',')],default=\"*\")\n#\n# Application definition",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -1925,7 +1949,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "SECRET_KEY = config(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(',')],default=\"*\")\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "SECRET_KEY = config(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -1934,7 +1958,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "DEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(',')],default=\"*\")\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
+        "peekOfCode": "DEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -1943,7 +1967,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "ALLOWED_HOSTS = config(\"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(',')],default=\"*\")\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "ALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -1970,7 +1994,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "ROOT_URLCONF = \"core.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [BASE_DIR/ \"templates\",],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",",
+        "peekOfCode": "ROOT_URLCONF = \"core.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [\n            BASE_DIR / \"templates\",\n        ],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -1979,7 +2003,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [BASE_DIR/ \"templates\",],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",\n                \"django.contrib.auth.context_processors.auth\",",
+        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [\n            BASE_DIR / \"templates\",\n        ],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2060,7 +2084,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "STATIC_ROOT = BASE_DIR / \"static\"\nMEDIA_ROOT = BASE_DIR / \"media\"\nMEDIA_URL = \"/media/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n#User manager config",
+        "peekOfCode": "STATIC_ROOT = BASE_DIR / \"static\"\nMEDIA_ROOT = BASE_DIR / \"media\"\nMEDIA_URL = \"/media/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# User manager config",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2069,7 +2093,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR / \"media\"\nMEDIA_URL = \"/media/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n#User manager config\nAUTH_USER_MODEL = \"accounts.User\"",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / \"media\"\nMEDIA_URL = \"/media/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# User manager config\nAUTH_USER_MODEL = \"accounts.User\"",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2078,7 +2102,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "MEDIA_URL = \"/media/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n#User manager config\nAUTH_USER_MODEL = \"accounts.User\"\n# rest framework",
+        "peekOfCode": "MEDIA_URL = \"/media/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# User manager config\nAUTH_USER_MODEL = \"accounts.User\"\n# rest framework",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2087,7 +2111,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n#User manager config\nAUTH_USER_MODEL = \"accounts.User\"\n# rest framework\n# REST_FRAMEWORK = {\"DEFAULT_PERMISSION_CLASSES\":[",
+        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / \"staticfiles\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# User manager config\nAUTH_USER_MODEL = \"accounts.User\"\n# rest framework\n# REST_FRAMEWORK = {\"DEFAULT_PERMISSION_CLASSES\":[",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2096,7 +2120,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n#User manager config\nAUTH_USER_MODEL = \"accounts.User\"\n# rest framework\n# REST_FRAMEWORK = {\"DEFAULT_PERMISSION_CLASSES\":[\n    # \"rest_framework.permissions.IsAuthenticated\",\n# ]}\nREST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\":[",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# User manager config\nAUTH_USER_MODEL = \"accounts.User\"\n# rest framework\n# REST_FRAMEWORK = {\"DEFAULT_PERMISSION_CLASSES\":[\n# \"rest_framework.permissions.IsAuthenticated\",\n# ]}\nREST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\": [",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2105,7 +2129,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"accounts.User\"\n# rest framework\n# REST_FRAMEWORK = {\"DEFAULT_PERMISSION_CLASSES\":[\n    # \"rest_framework.permissions.IsAuthenticated\",\n# ]}\nREST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\":[\n        'rest_framework.authentication.BasicAuthentication',\n        'rest_framework.authentication.SessionAuthentication',",
+        "peekOfCode": "AUTH_USER_MODEL = \"accounts.User\"\n# rest framework\n# REST_FRAMEWORK = {\"DEFAULT_PERMISSION_CLASSES\":[\n# \"rest_framework.permissions.IsAuthenticated\",\n# ]}\nREST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\": [\n        \"rest_framework.authentication.BasicAuthentication\",\n        \"rest_framework.authentication.SessionAuthentication\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2114,7 +2138,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\":[\n        'rest_framework.authentication.BasicAuthentication',\n        'rest_framework.authentication.SessionAuthentication',\n        'rest_framework.authentication.TokenAuthentication',\n        #jwt\n        'rest_framework_simplejwt.authentication.JWTAuthentication'\n    ]\n}",
+        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\": [\n        \"rest_framework.authentication.BasicAuthentication\",\n        \"rest_framework.authentication.SessionAuthentication\",\n        \"rest_framework.authentication.TokenAuthentication\",\n        # jwt\n        \"rest_framework_simplejwt.authentication.JWTAuthentication\",\n    ],\n}",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2177,7 +2201,7 @@
         "kind": 5,
         "importPath": "core.core.urls",
         "description": "core.core.urls",
-        "peekOfCode": "schema_view = get_schema_view(\n    openapi.Info(\n        title=\"Blog Api\",\n        default_version='v1',\n        description=\"this is experimental test for blog project\",\n        terms_of_service=\"https://www.google.com/policies/terms/\",\n        contact=openapi.Contact(email=\"alireza.noorahmadi67@gmail.com\"),\n        license=openapi.License(name=\"MIT License\"),\n    ),\n    public=True,",
+        "peekOfCode": "schema_view = get_schema_view(\n    openapi.Info(\n        title=\"Blog Api\",\n        default_version=\"v1\",\n        description=\"this is experimental test for blog project\",\n        terms_of_service=\"https://www.google.com/policies/terms/\",\n        contact=openapi.Contact(email=\"alireza.noorahmadi67@gmail.com\"),\n        license=openapi.License(name=\"MIT License\"),\n    ),\n    public=True,",
         "detail": "core.core.urls",
         "documentation": {}
     },
@@ -2186,7 +2210,7 @@
         "kind": 5,
         "importPath": "core.core.urls",
         "description": "core.core.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"blog/\", include(\"blog.urls\")),\n    path(\"accounts/\", include(\"accounts.urls\")),\n    # rest_framework authentication url\n    path(\"api-auth/\", include(\"rest_framework.urls\")),\n    path(\"api-docs/\", include_docs_urls(title=\"api sample\")),\n    # swagger\n    path('swagger/api.json/', schema_view.without_ui(cache_timeout=0),\n        name='schema-json'),",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"blog/\", include(\"blog.urls\")),\n    path(\"accounts/\", include(\"accounts.urls\")),\n    # rest_framework authentication url\n    path(\"api-auth/\", include(\"rest_framework.urls\")),\n    path(\"api-docs/\", include_docs_urls(title=\"api sample\")),\n    # swagger\n    path(\n        \"swagger/api.json/\", schema_view.without_ui(cache_timeout=0), name=\"schema-json\"",
         "detail": "core.core.urls",
         "documentation": {}
     },

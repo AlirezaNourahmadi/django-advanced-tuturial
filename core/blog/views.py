@@ -10,9 +10,9 @@ from .forms import ContactForm, PostForm
 from .models import Post
 
 
-
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
 # Create your views here.
 
 # function based view to show index page
@@ -29,7 +29,8 @@ class IndexView(TemplateView):
     """
     class based view to show index page
     """
-    template_name = 'index.html'
+
+    template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -109,7 +110,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = "/blog/post/"
 
 
-class APIPostListView():
+class APIPostListView:
     pass
 
 

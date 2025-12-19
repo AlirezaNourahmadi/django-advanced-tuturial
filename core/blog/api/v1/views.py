@@ -3,10 +3,16 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, ListCreateAPIView, CreateAPIView, GenericAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.viewsets import ViewSet,ModelViewSet
+from rest_framework.generics import (
+    ListAPIView,
+    ListCreateAPIView,
+    CreateAPIView,
+    GenericAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
+from rest_framework.viewsets import ViewSet, ModelViewSet
 from rest_framework.decorators import action
-from rest_framework.filters import SearchFilter,OrderingFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 from django.shortcuts import get_object_or_404
 from .serializers import PostSerializer, CategorySerializer
 from blog.models import Post, Category
@@ -108,15 +114,17 @@ class PostDetail(RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
 """
 
+
 class PostModelViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ["category", "author", "status"]
-    search_fields = ["title","content"]
+    search_fields = ["title", "content"]
     ordering_fields = ["published_date"]
     pagination_class = LargeResultsSetPagination
+
 
 class CategoryModelViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]

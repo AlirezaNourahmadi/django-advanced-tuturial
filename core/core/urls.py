@@ -31,7 +31,7 @@ from drf_yasg import openapi
 schema_view = get_schema_view(
     openapi.Info(
         title="Blog Api",
-        default_version='v1',
+        default_version="v1",
         description="this is experimental test for blog project",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="alireza.noorahmadi67@gmail.com"),
@@ -46,23 +46,20 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("blog/", include("blog.urls")),
     path("accounts/", include("accounts.urls")),
-
     # rest_framework authentication url
     path("api-auth/", include("rest_framework.urls")),
-
     path("api-docs/", include_docs_urls(title="api sample")),
-
     # swagger
-
-    path('swagger/api.json/', schema_view.without_ui(cache_timeout=0),
-        name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger',
-        cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc',
-        cache_timeout=0), name='schema-redoc'),
+    path(
+        "swagger/api.json/", schema_view.without_ui(cache_timeout=0), name="schema-json"
+    ),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

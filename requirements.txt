@@ -12,5 +12,10 @@ django-filter
 drf-yasg[validation]
 coreapi
 django-mail-templated
-
+djoser
 # deployement
+
+
+# reformatting
+black
+flake8

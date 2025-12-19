@@ -6,11 +6,9 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["title","content","status","category","published_date"]
-        
+        fields = ["title", "content", "status", "category", "published_date"]
 
 
 class ContactForm(forms.Form):
     name = forms.CharField()
     message = forms.CharField(widget=forms.Textarea)
-    

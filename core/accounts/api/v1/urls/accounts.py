@@ -3,27 +3,41 @@ from .. import views
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
-    TokenRefreshView, TokenVerifyView
+    TokenRefreshView,
+    TokenVerifyView,
 )
 
 urlpatterns = [
     # registration
     path("registration/", views.RegistrationApiView.as_view(), name="registration"),
-    
-    path("test-email/",views.TestEmailSend.as_view(),name="test-email"),
+    path("test-email/", views.TestEmailSend.as_view(), name="test-email"),
     # activation
-    path("activation/confirm/<str:token>",views.ActivationApiView.as_view(),name="activation"),
+    path(
+        "activation/confirm/<str:token>",
+        views.ActivationApiView.as_view(),
+        name="activation",
+    ),
     # resend activation
-    path("activation/resend/",views.ActivationResendApiView.as_view(),name="activation-resend"),
+    path(
+        "activation/resend/",
+        views.ActivationResendApiView.as_view(),
+        name="activation-resend",
+    ),
     # change password
-    path("change-password/", views.ChangePasswordView.as_view(),
-        name="change-password"),
+    path(
+        "change-password/", views.ChangePasswordView.as_view(), name="change-password"
+    ),
     # reset password
-    path("reset-password/request/", views.PasswordResetRequestView.as_view(),
-        name="reset-password-request"),
-    path("reset-password/confirm/", views.PasswordResetConfirmView.as_view(),
-        name="reset-password-confirm"),
-    
+    path(
+        "reset-password/request/",
+        views.PasswordResetRequestView.as_view(),
+        name="reset-password-request",
+    ),
+    path(
+        "reset-password/confirm/",
+        views.PasswordResetConfirmView.as_view(),
+        name="reset-password-confirm",
+    ),
     # login token
     path("token/login/", views.CustomObtainAuthToken.as_view(), name="token-login"),
     path("token/logout/", views.CustomDiscardAuthToken.as_view(), name="token-logout"),

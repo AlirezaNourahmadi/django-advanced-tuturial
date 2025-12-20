@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, RedirectView
 app_name = "blog"
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
+    path("", views.IndexView.as_view(), name="index"),
     # path("fbv-index/",views.indexView,name="fbv-test"),
     # path("cbv-index/", TemplateView.as_view(template_name="index.html", extra_context={"name":"alireza"})),
     # path("cbv-index/",views.IndexView.as_view(),name="cbv-index"),

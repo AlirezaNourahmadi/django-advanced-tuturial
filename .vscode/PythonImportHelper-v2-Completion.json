@@ -91,14 +91,6 @@
         "documentation": {}
     },
     {
-        "label": "resolve",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -315,6 +307,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
         "label": "validate_password",
         "importPath": "django.contrib.auth.password_validation",
         "description": "django.contrib.auth.password_validation",
@@ -412,6 +412,14 @@
     },
     {
         "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -878,22 +886,6 @@
         "documentation": {}
     },
     {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "SimpleTestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
         "label": "PageNumberPagination",
         "importPath": "rest_framework.pagination",
         "description": "rest_framework.pagination",
@@ -1027,6 +1019,31 @@
         "description": "django_filters.rest_framework",
         "isExtraImport": true,
         "detail": "django_filters.rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "fixture",
+        "importPath": "pytest",
+        "description": "pytest",
+        "isExtraImport": true,
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "APIClient",
+        "importPath": "rest_framework.test",
+        "description": "rest_framework.test",
+        "isExtraImport": true,
+        "detail": "rest_framework.test",
         "documentation": {}
     },
     {
@@ -1747,12 +1764,30 @@
         "documentation": {}
     },
     {
-        "label": "TestUrl",
+        "label": "TestPostAPI",
         "kind": 6,
-        "importPath": "core.blog.tests.tests_blog_urls",
-        "description": "core.blog.tests.tests_blog_urls",
-        "peekOfCode": "class TestUrl(TestCase):\n    def test_blog_index_url_resolve(self):\n        url = reverse('blog:index')\n        self.assertEqual(resolve(url).func.view_class, IndexView)\n    def test_blog_post_list_url_resolve(self):\n        url = reverse('blog:post-list')\n        self.assertEqual(resolve(url).func.view_class, PostListView)\n    def test_blog_post_detail_url_resolve(self):\n        url = reverse('blog:post-detail', kwargs={'pk': 1})\n        self.assertEqual(resolve(url).func.view_class, PostDetailView)",
-        "detail": "core.blog.tests.tests_blog_urls",
+        "importPath": "core.blog.tests.test_post_api",
+        "description": "core.blog.tests.test_post_api",
+        "peekOfCode": "class TestPostAPI:\n    client = APIClient()\n    def test_get_post_response_200(self, api_client):\n        url = reverse(\"blog:api-v1:post-list\")\n        response = api_client.get(url)\n        assert response.status_code == 200\n    def test_create_post_response_201_status(self, api_client, common_user):\n        url = reverse(\"blog:api-v1:post-list\")\n        data={\"title\": \"Test Post\",\n              \"content\": \"This is a test post.\",",
+        "detail": "core.blog.tests.test_post_api",
+        "documentation": {}
+    },
+    {
+        "label": "api_client",
+        "kind": 2,
+        "importPath": "core.blog.tests.test_post_api",
+        "description": "core.blog.tests.test_post_api",
+        "peekOfCode": "def api_client():\n    client = APIClient()\n    return client\n@fixture\ndef common_user():\n    user = User.objects.create_user(\n        email = \"admin@admin.com\",\n        password = \"138067sh\",\n        is_verified = True\n    )",
+        "detail": "core.blog.tests.test_post_api",
+        "documentation": {}
+    },
+    {
+        "label": "common_user",
+        "kind": 2,
+        "importPath": "core.blog.tests.test_post_api",
+        "description": "core.blog.tests.test_post_api",
+        "peekOfCode": "def common_user():\n    user = User.objects.create_user(\n        email = \"admin@admin.com\",\n        password = \"138067sh\",\n        is_verified = True\n    )\n    return user\n@pytest.mark.django_db\nclass TestPostAPI:\n    client = APIClient()",
+        "detail": "core.blog.tests.test_post_api",
         "documentation": {}
     },
     {
@@ -1814,7 +1849,7 @@
         "kind": 5,
         "importPath": "core.blog.urls",
         "description": "core.blog.urls",
-        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n    path('', views.IndexView.as_view(), name='index'),\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\", views.PostListView.as_view(), name=\"post-list\"),\n    path(\"post/<int:pk>/\", views.PostDetailView.as_view(), name=\"post-detail\"),\n    path(\"post/create/\", views.PostCreateView.as_view(), name=\"post-create\"),",
+        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n    path(\"\", views.IndexView.as_view(), name=\"index\"),\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\", views.PostListView.as_view(), name=\"post-list\"),\n    path(\"post/<int:pk>/\", views.PostDetailView.as_view(), name=\"post-detail\"),\n    path(\"post/create/\", views.PostCreateView.as_view(), name=\"post-create\"),",
         "detail": "core.blog.urls",
         "documentation": {}
     },
@@ -1823,7 +1858,7 @@
         "kind": 5,
         "importPath": "core.blog.urls",
         "description": "core.blog.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.IndexView.as_view(), name='index'),\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\", views.PostListView.as_view(), name=\"post-list\"),\n    path(\"post/<int:pk>/\", views.PostDetailView.as_view(), name=\"post-detail\"),\n    path(\"post/create/\", views.PostCreateView.as_view(), name=\"post-create\"),\n    path(\"post/<int:pk>/update/\", views.PostUpdateView.as_view(), name=\"post-update\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.IndexView.as_view(), name=\"index\"),\n    # path(\"fbv-index/\",views.indexView,name=\"fbv-test\"),\n    # path(\"cbv-index/\", TemplateView.as_view(template_name=\"index.html\", extra_context={\"name\":\"alireza\"})),\n    # path(\"cbv-index/\",views.IndexView.as_view(),name=\"cbv-index\"),\n    # path(\"go-to-maktabkhooneh/\",views.RedirectToMaktabView.as_view(),name=\"redirect-to-maktabkhooneh\"),\n    path(\"post/\", views.PostListView.as_view(), name=\"post-list\"),\n    path(\"post/<int:pk>/\", views.PostDetailView.as_view(), name=\"post-detail\"),\n    path(\"post/create/\", views.PostCreateView.as_view(), name=\"post-create\"),\n    path(\"post/<int:pk>/update/\", views.PostUpdateView.as_view(), name=\"post-update\"),",
         "detail": "core.blog.urls",
         "documentation": {}
     },
@@ -1940,7 +1975,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config(\"SECRET_KEY\", default=\"test\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool, default=True)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -1949,7 +1984,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "SECRET_KEY = config(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",",
+        "peekOfCode": "SECRET_KEY = config(\"SECRET_KEY\", default=\"test\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool, default=True)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -1958,7 +1993,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "DEBUG = config(\"DEBUG\", cast=bool)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "DEBUG = config(\"DEBUG\", cast=bool, default=True)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
         "detail": "core.core.settings",
         "documentation": {}
     },

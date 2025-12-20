@@ -19,3 +19,7 @@ djoser
 # reformatting
 black
 flake8
+
+# testing
+pytest
+pytest-django

@@ -1697,7 +1697,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.serializers",
         "description": "core.blog.api.v1.serializers",
-        "peekOfCode": "class CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = \"__all__\"\nclass PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all()",
+        "peekOfCode": "class CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = \"__all__\"\nclass PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all(), required=False",
         "detail": "core.blog.api.v1.serializers",
         "documentation": {}
     },
@@ -1706,7 +1706,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.serializers",
         "description": "core.blog.api.v1.serializers",
-        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all()\n    )\n    class Meta:\n        model = Post\n        fields = \"__all__\"",
+        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all(), required=False\n    )\n    class Meta:\n        model = Post\n        fields = \"__all__\"",
         "detail": "core.blog.api.v1.serializers",
         "documentation": {}
     },

@@ -14,8 +14,11 @@ exclude =
     settings.py,
     */settings.py,
     __init__.py,
+    blog,
+    core,
+    accounts,
 
 ignore =
     E501
-
+    
     

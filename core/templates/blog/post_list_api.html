@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>blog posts</h1>
+    <ol id = "post-wrapper">
+    {% comment %} <div>
+      <h3>id - {{ post.id }}</h3>
+      <h3>{{ post.author.first_name }}</h3>
+      <a href="{% url 'blog:post-detail' pk=post.id %}"><h2>{{ post.title }}</h2></a>
+      <p>{{ post.content }} - {{ post.published_date }}</p>
+      <a href="{% url 'blog:post-update' pk=post.id %}"><h5>Edit</h5></a>
+      <a href="{% url 'blog:post-delete' pk=post.id %}"><h5>Delete</h5></a>
+      <hr />
+    </div> {% endcomment %}
+    </ol>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      $.get(
+        'http://127.0.0.1:8000/blog/api/v1/post/', // url
+        function (data, textStatus, jqXHR) {
+            wrapper = $('#post-wrapper');
+            for (post of data.results){
+                wrapper.append(`<li><a href="${post.absolute_url}"><h2>${post.title}</h2></a></li>`);
+            }
+            
+
+          // success callback
+          // alert('status: ' + textStatus + ', data:' + data)
+          console.log(data)
+        }
+      )
+    </script>
+  </body>
+</html>

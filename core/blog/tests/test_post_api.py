@@ -5,38 +5,39 @@ from django.urls import reverse
 from datetime import datetime
 from accounts.models import User
 
+
 @fixture
 def api_client():
     client = APIClient()
     return client
 
+
 @fixture
 def common_user():
     user = User.objects.create_user(
-        email = "admin@admin.com",
-        password = "138067sh",
-        is_verified = True
+        email="admin@admin.com", password="138067sh", is_verified=True
     )
     return user
 
 
 @pytest.mark.django_db
 class TestPostAPI:
-    
+
     client = APIClient()
+
     def test_get_post_response_200(self, api_client):
         url = reverse("blog:api-v1:post-list")
         response = api_client.get(url)
         assert response.status_code == 200
 
-
     def test_create_post_response_201_status(self, api_client, common_user):
         url = reverse("blog:api-v1:post-list")
-        data={"title": "Test Post",
-              "content": "This is a test post.",
-              "status": True,
-              "published_date": datetime.now(),
-              }
+        data = {
+            "title": "Test Post",
+            "content": "This is a test post.",
+            "status": True,
+            "published_date": datetime.now(),
+        }
         api_client.force_authenticate(user=common_user)
         response = api_client.post(url, data)
         assert response.status_code == 201

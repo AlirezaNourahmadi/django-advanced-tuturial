@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateVi
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from rest_framework.views import APIView
 from .forms import ContactForm, PostForm
 from .models import Post
 
@@ -110,8 +111,8 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = "/blog/post/"
 
 
-class APIPostListView:
-    pass
+class PostListApiView(TemplateView):
+    template_name = "blog/post_list_api.html"
 
 
 @api_view()

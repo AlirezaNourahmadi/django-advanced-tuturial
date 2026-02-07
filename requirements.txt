@@ -23,3 +23,13 @@ flake8
 # testing
 pytest
 pytest-django
+
+#generating fake datas
+faker
+
+#CORS Policy
+django-cors-headers
+
+
+# Load Testing
+locust

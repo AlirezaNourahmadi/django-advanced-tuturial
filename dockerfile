@@ -11,7 +11,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential \
     && rm -rf /var/lib/apt/lists/*
 RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
+RUN pip3 install "Cython<3"
+RUN pip3 install --no-build-isolation -r requirements.txt
 
 
 COPY ./core /app

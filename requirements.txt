@@ -33,3 +33,10 @@ django-cors-headers
 
 # Load Testing
 locust
+
+
+
+# Pin gevent/greenlet and Cython to avoid source build issues on Python 3.8 (arm64)
+gevent==23.9.1
+greenlet==3.0.3
+Cython<3

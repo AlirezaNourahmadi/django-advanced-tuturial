@@ -1,4 +1,12 @@
 services:
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+    - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning
+    
   backend:
     build: .
     container_name: backend
@@ -13,9 +21,17 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG=True
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+    depends_on:
+      - redis
+  celery_worker:
+    build: .
+    command: celery -A core worker --loglevel=info
+    depends_on:
+      - redis
+      - backend
 
 
-# ⚠️  SECURITY WARNING: The port configuration below publishes smtp4dev to ALL network interfaces.
+# SECURITY WARNING: The port configuration below publishes smtp4dev to ALL network interfaces.
 # This means it may be accessible from outside your machine. For security, consider using:
 #   - '127.0.0.1:5000:80'   # Web interface (localhost only)
 #   - '127.0.0.1:25:25'     # SMTP server (localhost only)
@@ -55,7 +71,7 @@ services:
       - ./core/locust:/mnt/locust
     command: -f /mnt/locust/locustfile.py --master -H http://backend:8000
 
-  worker:
+  locust_worker:
     image: locustio/locust
     volumes:
       - ./core/locust:/mnt/locust

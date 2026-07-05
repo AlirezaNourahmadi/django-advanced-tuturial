@@ -1232,6 +1232,14 @@
         "documentation": {}
     },
     {
+        "label": "Celery",
+        "importPath": "celery",
+        "description": "celery",
+        "isExtraImport": true,
+        "detail": "celery",
+        "documentation": {}
+    },
+    {
         "label": "Path",
         "importPath": "pathlib",
         "description": "pathlib",
@@ -2086,6 +2094,15 @@
         "documentation": {}
     },
     {
+        "label": "app",
+        "kind": 5,
+        "importPath": "core.core.celery",
+        "description": "core.core.celery",
+        "peekOfCode": "app = Celery('core')\n# Using a string here means the worker doesn't have to serialize\n# the configuration object to child processes.\n# - namespace='CELERY' means all celery-related configuration keys\n#   should have a `CELERY_` prefix.\napp.config_from_object('django.conf:settings', namespace='CELERY')\n# Load task modules from all registered Django app configs.\napp.autodiscover_tasks()",
+        "detail": "core.core.celery",
+        "documentation": {}
+    },
+    {
         "label": "BASE_DIR",
         "kind": 5,
         "importPath": "core.core.settings",
@@ -2315,7 +2332,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2324,7 +2341,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2333,7 +2350,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2342,7 +2359,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2351,7 +2368,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2360,7 +2377,16 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CELERY_BROKER_URL",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "CELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },

@@ -1232,6 +1232,14 @@
         "documentation": {}
     },
     {
+        "label": "Celery",
+        "importPath": "celery",
+        "description": "celery",
+        "isExtraImport": true,
+        "detail": "celery",
+        "documentation": {}
+    },
+    {
         "label": "Path",
         "importPath": "pathlib",
         "description": "pathlib",
@@ -1285,6 +1293,30 @@
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "HttpUser",
+        "importPath": "locust",
+        "description": "locust",
+        "isExtraImport": true,
+        "detail": "locust",
+        "documentation": {}
+    },
+    {
+        "label": "task",
+        "importPath": "locust",
+        "description": "locust",
+        "isExtraImport": true,
+        "detail": "locust",
+        "documentation": {}
+    },
+    {
+        "label": "between",
+        "importPath": "locust",
+        "description": "locust",
+        "isExtraImport": true,
+        "detail": "locust",
         "documentation": {}
     },
     {
@@ -1697,7 +1729,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.serializers",
         "description": "core.blog.api.v1.serializers",
-        "peekOfCode": "class CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = \"__all__\"\nclass PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all()",
+        "peekOfCode": "class CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = \"__all__\"\nclass PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all(), required=False",
         "detail": "core.blog.api.v1.serializers",
         "documentation": {}
     },
@@ -1706,7 +1738,7 @@
         "kind": 6,
         "importPath": "core.blog.api.v1.serializers",
         "description": "core.blog.api.v1.serializers",
-        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all()\n    )\n    class Meta:\n        model = Post\n        fields = \"__all__\"",
+        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    snippet = serializers.ReadOnlyField(source=\"get_snippet\")\n    relative_url = serializers.URLField(source=\"get_absolute_api_url\", read_only=True)\n    absolute_url = serializers.SerializerMethodField(method_name=\"get_abs_url\")\n    category = serializers.SlugRelatedField(\n        many=False, read_only=False, slug_field=\"name\", queryset=Category.objects.all(), required=False\n    )\n    class Meta:\n        model = Post\n        fields = \"__all__\"",
         "detail": "core.blog.api.v1.serializers",
         "documentation": {}
     },
@@ -2062,11 +2094,20 @@
         "documentation": {}
     },
     {
+        "label": "app",
+        "kind": 5,
+        "importPath": "core.core.celery",
+        "description": "core.core.celery",
+        "peekOfCode": "app = Celery('core')\n# Using a string here means the worker doesn't have to serialize\n# the configuration object to child processes.\n# - namespace='CELERY' means all celery-related configuration keys\n#   should have a `CELERY_` prefix.\napp.config_from_object('django.conf:settings', namespace='CELERY')\n# Load task modules from all registered Django app configs.\napp.autodiscover_tasks()",
+        "detail": "core.core.celery",
+        "documentation": {}
+    },
+    {
         "label": "BASE_DIR",
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config(\"SECRET_KEY\", default=\"test\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool, default=True)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config(\"SECRET_KEY\", default=\"test\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool, default=True)\nraw_allowed_hosts = config(\n    \"ALLOWED_HOSTS\", default=\"localhost,127.0.0.1,0.0.0.0,backend\"\n)",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2075,7 +2116,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "SECRET_KEY = config(\"SECRET_KEY\", default=\"test\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool, default=True)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\nCORS_ORIGIN_ALLOW_ALL = True\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "SECRET_KEY = config(\"SECRET_KEY\", default=\"test\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config(\"DEBUG\", cast=bool, default=True)\nraw_allowed_hosts = config(\n    \"ALLOWED_HOSTS\", default=\"localhost,127.0.0.1,0.0.0.0,backend\"\n)\nALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(\",\") if host.strip()]\n#\nCORS_ORIGIN_ALLOW_ALL = True\n# Application definition",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2084,7 +2125,16 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "DEBUG = config(\"DEBUG\", cast=bool, default=True)\nALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\nCORS_ORIGIN_ALLOW_ALL = True\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",",
+        "peekOfCode": "DEBUG = config(\"DEBUG\", cast=bool, default=True)\nraw_allowed_hosts = config(\n    \"ALLOWED_HOSTS\", default=\"localhost,127.0.0.1,0.0.0.0,backend\"\n)\nALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(\",\") if host.strip()]\n#\nCORS_ORIGIN_ALLOW_ALL = True\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "raw_allowed_hosts",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "raw_allowed_hosts = config(\n    \"ALLOWED_HOSTS\", default=\"localhost,127.0.0.1,0.0.0.0,backend\"\n)\nALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(\",\") if host.strip()]\n#\nCORS_ORIGIN_ALLOW_ALL = True\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2093,7 +2143,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "ALLOWED_HOSTS = config(\n    \"ALLOWED_HOSTS\", cast=lambda v: [s.strip() for s in v.split(\",\")], default=\"*\"\n)\n#\nCORS_ORIGIN_ALLOW_ALL = True\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "ALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(\",\") if host.strip()]\n#\nCORS_ORIGIN_ALLOW_ALL = True\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2282,7 +2332,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2291,7 +2341,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_USE_TLS = False\nEMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2300,7 +2350,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_HOST = \"smtp4dev\"\nEMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2309,7 +2359,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_HOST_USER = \"\"\nEMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2318,7 +2368,7 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = \"\"\nEMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2327,7 +2377,16 @@
         "kind": 5,
         "importPath": "core.core.settings",
         "description": "core.core.settings",
-        "peekOfCode": "EMAIL_PORT = 25",
+        "peekOfCode": "EMAIL_PORT = 25\n# Celery Configuration\nCELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
+        "detail": "core.core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CELERY_BROKER_URL",
+        "kind": 5,
+        "importPath": "core.core.settings",
+        "description": "core.core.settings",
+        "peekOfCode": "CELERY_BROKER_URL = config(\"CELERY_BROKER_URL\", default=\"redis://redis:6379/1\")",
         "detail": "core.core.settings",
         "documentation": {}
     },
@@ -2356,6 +2415,15 @@
         "description": "core.core.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "core.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "QuickstartUser",
+        "kind": 6,
+        "importPath": "core.locust.locustfile",
+        "description": "core.locust.locustfile",
+        "peekOfCode": "class QuickstartUser(HttpUser):\n#    wait_time = between(1, 2.5)\n#\n    @task\n    def post_list(self):\n        self.client.get(\"/blog/api/v1/post\")",
+        "detail": "core.locust.locustfile",
         "documentation": {}
     },
     {
